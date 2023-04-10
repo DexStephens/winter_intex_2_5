@@ -6,18 +6,19 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+//using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private ITestRepository _testRepository;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ITestRepository testRepository)
+        //{
+        //    _testRepository = testRepository;
+        //}
 
         public IActionResult Index()
         {

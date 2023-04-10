@@ -15,14 +15,18 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
+//using winter_intex_2_5.Data.Repositories;
+using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,6 +34,42 @@ namespace winter_intex_2_5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            if (_env.IsDevelopment())
+            {
+                //services.AddDbContext<RDSContext>(options =>
+                //    options.UseNpgsql(Configuration.GetConnectionString("RDS"))
+                //);
+
+                // enable Google sign in
+                services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = googleAuthNSection["ClientId"];
+                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+                });
+            }
+            else
+            {
+                //services.AddDbContext<RDSContext>(options =>
+                //    options.UseNpgsql(Configuration.GetConnectionString("RDS"))
+                //);
+
+                // enable Google sign in
+                services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["GoogleClientId"];
+                    options.ClientSecret = Configuration["GoogleClientSecret"];
+                });
+            }
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("DefaultConnection")));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -39,24 +79,12 @@ namespace winter_intex_2_5
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddScoped<ITestRepository, EFTestRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            // enable Google sign in
-            services.AddAuthentication()
-            .AddGoogle(options =>
-            {
-                IConfigurationSection googleAuthNSection =
-                    Configuration.GetSection("Authentication:Google");
-
-                options.ClientId = googleAuthNSection["ClientId"];
-                options.ClientSecret = googleAuthNSection["ClientSecret"];
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +103,22 @@ namespace winter_intex_2_5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseCookiePolicy(); // GDPR cookie policy
+
+            // XSS Protection Header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
+
+            // CSP Header
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy",
+                "default-src 'self'");
+                await next();
+            });
 
             app.UseRouting();
 
