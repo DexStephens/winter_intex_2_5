@@ -5,19 +5,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using winter_intex_2_5.Data.Repositories;
+//using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
     public class HomeController : Controller
     {
-        private ITestRepository _testRepository;
+        //private ITestRepository _testRepository;
 
-        public HomeController(ITestRepository testRepository)
-        {
-            _testRepository = testRepository;
-        }
+        //public HomeController(ITestRepository testRepository)
+        //{
+        //    _testRepository = testRepository;
+        //}
 
         public IActionResult Index()
         {
