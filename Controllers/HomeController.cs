@@ -21,8 +21,7 @@ namespace winter_intex_2_5.Controllers
 
         public IActionResult Index()
         {
-            var tests = _testRepository.Tests;
-            return View(tests);
+            return View();
         }
 
         public IActionResult Privacy()
