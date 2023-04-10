@@ -1,0 +1,46 @@
+﻿@using winter_intex_2_5.Data.Repositories;
+<h1>Welcome to the Burial Record Summary</h1>
+@model IEnumerable<Burialmain>
+
+<style>
+    .arrow:hover {
+        cursor: pointer;
+    }
+
+</style>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Textile color <span class="arrow">&darr;</span></th>
+            <th>Textile structure <span class="arrow">&darr;</span></th>
+            <th>Sex <span class="arrow">&darr;</span></th>
+            <th>Burial Depth <span class="arrow">&darr;</span></th>
+            <th>Estimate Stature <span class="arrow">&darr;</span></th>
+            <th>Age at Death <span class="arrow">&darr;</span></th>
+            <th>Head Direction <span class="arrow">&darr;</span></th>
+            <th>Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number) <span class="arrow">&darr;</span></th>
+            <th>Textile Function <span class="arrow">&darr;</span></th>
+            <th>Hair Color <span class="arrow">&darr;</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var burial in Model)
+            {
+                <tr>
+                    <td>color</td>
+                    <td>structure</td>
+                    <td>@burial.Sex</td>
+                    <td>@burial.Depth</td>
+                    <td>stature here</td>
+                    <td>@burial.Ageatdeath</td>
+                    <td>@burial.Headdirection</td>
+                    <td>@burial.Burialid</td>
+                    <td>function</td>
+                    <td>@burial.Haircolor</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

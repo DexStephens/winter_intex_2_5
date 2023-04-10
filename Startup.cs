@@ -14,7 +14,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
-//using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5
@@ -86,7 +85,7 @@ namespace winter_intex_2_5
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddServerSideBlazor();
         }
@@ -116,13 +115,13 @@ namespace winter_intex_2_5
                 await next();
             });
 
-            // CSP Header
-            //app.Use(async (ctx, next) =>
-            //{
-            //    ctx.Response.Headers.Add("Content-Security-Policy",
-            //    "default-src 'self'");
-            //    await next();
-            //});
+            //CSP Header
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy",
+                "default-src 'self'");
+                await next();
+            });
 
             app.UseRouting();
 

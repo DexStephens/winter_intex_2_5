@@ -5,23 +5,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-//using winter_intex_2_5.Data.Repositories;
+using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
     public class HomeController : Controller
     {
-        //private ITestRepository _testRepository;
+        private IMummyRepository _mummyRepository;
 
-        //public HomeController(ITestRepository testRepository)
-        //{
-        //    _testRepository = testRepository;
-        //}
+        public HomeController(IMummyRepository mummyRepository)
+        {
+            _mummyRepository = mummyRepository;
+        }
 
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult Summary()
+        {
+            var burials = _mummyRepository.Burialmains.ToList();
+            return View(burials);
         }
 
         public IActionResult Privacy()
