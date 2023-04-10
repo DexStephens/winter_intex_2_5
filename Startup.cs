@@ -65,7 +65,16 @@ namespace winter_intex_2_5
                     options.ClientId = Configuration["GoogleClientId"];
                     options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
-            }
+
+
+                services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequiredLength = 10;
+                });
 
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(
