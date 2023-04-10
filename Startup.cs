@@ -80,7 +80,22 @@ namespace winter_intex_2_5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseCookiePolicy(); // GDPR cookie policy
+
+            // XSS Protection Header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
+
+            // CSP Header
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy",
+                "default-src 'self'");
+                await next();
+            });
 
             app.UseRouting();
 
