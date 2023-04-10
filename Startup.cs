@@ -88,6 +88,7 @@ namespace winter_intex_2_5
             services.AddScoped<IMummyRepository, EFMummyRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,12 +117,12 @@ namespace winter_intex_2_5
             });
 
             // CSP Header
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src 'self'");
-                await next();
-            });
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src 'self'");
+            //    await next();
+            //});
 
             app.UseRouting();
 
@@ -134,6 +135,7 @@ namespace winter_intex_2_5
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }
