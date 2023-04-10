@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
+using winter_intex_2_5.Data.Repositories;
 //using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
@@ -34,9 +35,9 @@ namespace winter_intex_2_5
         {
             if (_env.IsDevelopment())
             {
-                //services.AddDbContext<RDSContext>(options =>
-                //    options.UseNpgsql(Configuration.GetConnectionString("RDS"))
-                //);
+                services.AddDbContext<MummyContext>(options =>
+                    options.UseNpgsql(Configuration.GetSection("RDS:Mummy")["MummyConnect"])
+                );
 
                 // enable Google sign in
                 services.AddAuthentication()
@@ -51,9 +52,9 @@ namespace winter_intex_2_5
             }
             else
             {
-                //services.AddDbContext<RDSContext>(options =>
-                //    options.UseNpgsql(Configuration.GetConnectionString("RDS"))
-                //);
+                services.AddDbContext<MummyContext>(options =>
+                    options.UseNpgsql(Configuration["MummyDB"])
+                );
 
                 // enable Google sign in
                 services.AddAuthentication()
@@ -80,7 +81,7 @@ namespace winter_intex_2_5
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddScoped<ITestRepository, EFTestRepository>();
+            services.AddScoped<IMummyRepository, EFMummyRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
