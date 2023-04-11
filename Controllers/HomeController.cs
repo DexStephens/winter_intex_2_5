@@ -28,6 +28,21 @@ namespace winter_intex_2_5.Controllers
             return View();
         }
 
+        public IActionResult Burials()
+        {
+            return View();
+        }
+
+        public IActionResult Predictions()
+        {
+            return View();
+        }
+
+        public IActionResult Analysis()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
