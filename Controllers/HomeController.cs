@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
+using winter_intex_2_5.Services;
 
 namespace winter_intex_2_5.Controllers
 {
@@ -25,8 +27,8 @@ namespace winter_intex_2_5.Controllers
         }
         public IActionResult Summary()
         {
-            var burials = _mummyRepository.Burialmains.ToList();
-            return View(burials);
+            List<SummaryTableRowItem> summaryTableRowItems = new SummaryTableService(_mummyRepository).OriginalLoadBurials();
+            return View(summaryTableRowItems);
         }
 
         public IActionResult Privacy()
