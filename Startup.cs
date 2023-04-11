@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
+using winter_intex_2_5.Services;
 
 namespace winter_intex_2_5
 {
@@ -64,10 +65,6 @@ namespace winter_intex_2_5
                 });
             }
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
-                        Configuration.GetConnectionString("DefaultConnection")));
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -77,12 +74,10 @@ namespace winter_intex_2_5
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<MummyContext>()
+                .AddDefaultTokenProviders();
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -91,8 +86,11 @@ namespace winter_intex_2_5
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            UserInitializer.InitializeAsync(serviceProvider).GetAwaiter().GetResult();
+            UserInitializer.SeedAdministratorAsync(serviceProvider).GetAwaiter().GetResult();
+
             app.UseHttpsRedirection();
 
             if (env.IsDevelopment())

@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -8,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace winter_intex_2_5.Models
 {
-    public partial class MummyContext : DbContext
+    public partial class MummyContext : IdentityDbContext<ApplicationUser>
     {
         public MummyContext()
         {
@@ -66,6 +68,8 @@ namespace winter_intex_2_5.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Analysis>(entity =>
             {
                 entity.ToTable("analysis");
