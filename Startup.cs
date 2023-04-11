@@ -4,17 +4,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
+using winter_intex_2_5.Services;
 
 namespace winter_intex_2_5
 {
@@ -62,11 +66,17 @@ namespace winter_intex_2_5
                     options.ClientId = Configuration["GoogleClientId"];
                     options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
-            }
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
-                        Configuration.GetConnectionString("DefaultConnection")));
+
+                services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequiredLength = 10;
+                });
+            }
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -76,23 +86,46 @@ namespace winter_intex_2_5
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.AddScoped<IMummyRepository, EFMummyRepository>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<MummyContext>()
+                .AddDefaultTokenProviders();
+
+            
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            //create the admin user
+            ApplicationUser newAdmin = new ApplicationUser();
+            string password = "";
+
+            if(env.IsDevelopment())
+            {
+                newAdmin.UserName = Configuration.GetSection("Admin")["Username"];
+                newAdmin.FirstName = Configuration.GetSection("Admin")["First"];
+                newAdmin.LastName = Configuration.GetSection("Admin")["Last"];
+                password = Configuration.GetSection("Admin")["Password"];
+                newAdmin.Email = Configuration.GetSection("Admin")["Email"];
+            }
+            else
+            {
+                newAdmin.UserName = Configuration["AdminUsername"];
+                newAdmin.FirstName = Configuration["AdminFirst"];
+                newAdmin.LastName = Configuration["AdminLast"];
+                password = Configuration["AdminPassword"];
+                newAdmin.Email = Configuration["AdminEmail"];
+            }
+
+            UserInitializer.InitializeAsync(serviceProvider).GetAwaiter().GetResult();
+            UserInitializer.SeedAdministratorAsync(serviceProvider, newAdmin, password).GetAwaiter().GetResult();
+
             app.UseHttpsRedirection();
 
             if (env.IsDevelopment())
@@ -118,12 +151,12 @@ namespace winter_intex_2_5
             });
 
             //CSP Header
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src 'self'");
-                await next();
-            });
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src 'self'");
+            //    await next();
+            //});
 
             app.UseRouting();
 

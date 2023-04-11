@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data.Repositories;
@@ -36,10 +38,27 @@ namespace winter_intex_2_5.Controllers
             return View();
         }
 
+        public IActionResult Burials()
+        {
+            return View();
+        }
+
+        public IActionResult Predictions()
+        {
+            return View();
+        }
+
+        public IActionResult Analysis()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+    
     }
 }

@@ -20,12 +20,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.32" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".ebextensions\https-redirect.config" />
+    <Folder Include=".ebextensions\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include=".ebextensions\securelistener-alb.config" />
+  </ItemGroup>
 </Project>
