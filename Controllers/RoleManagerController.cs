@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace winter_intex_2_5.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "administrator")]
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

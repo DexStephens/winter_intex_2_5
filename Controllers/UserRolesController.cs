@@ -9,7 +9,7 @@ using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "administrator")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -51,6 +51,7 @@ namespace winter_intex_2_5.Controllers
             }
             ViewBag.UserName = user.UserName;
             var model = new List<ManageUserRolesViewModel>();
+            List<string> roles = await GetUserRoles(user);
             foreach (var role in _roleManager.Roles)
             {
                 var userRolesViewModel = new ManageUserRolesViewModel
@@ -58,7 +59,7 @@ namespace winter_intex_2_5.Controllers
                     RoleId = role.Id,
                     RoleName = role.Name
                 };
-                if (await _userManager.IsInRoleAsync(user, role.Name))
+                if (roles.Contains(role.Name))
                 {
                     userRolesViewModel.Selected = true;
                 }

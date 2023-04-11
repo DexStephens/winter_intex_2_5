@@ -81,13 +81,14 @@ namespace winter_intex_2_5
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddScoped<IMummyRepository, EFMummyRepository>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<MummyContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<IMummyRepository, EFMummyRepository>();
+            
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddServerSideBlazor();
