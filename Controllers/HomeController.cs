@@ -1,26 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IMummyRepository _mummyRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IMummyRepository mummyRepository)
         {
-            _logger = logger;
+            _mummyRepository = mummyRepository;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+        [Authorize(Roles = "Researcher")]
+        public IActionResult Summary()
+        {
+            var burials = _mummyRepository.Burialmains.ToList();
+            return View(burials);
         }
 
         public IActionResult Privacy()
@@ -48,5 +57,7 @@ namespace winter_intex_2_5.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+    
     }
 }
