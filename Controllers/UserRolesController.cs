@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

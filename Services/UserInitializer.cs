@@ -4,6 +4,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using winter_intex_2_5.Models;
 using System.Linq;
+using System.Text.Json;
 
 namespace winter_intex_2_5.Services
 {
@@ -26,17 +27,17 @@ namespace winter_intex_2_5.Services
                 }
             }
         }
-        public static async Task SeedAdministratorAsync(IServiceProvider serviceProvider)
+        public static async Task SeedAdministratorAsync(IServiceProvider serviceProvider, ApplicationUser newAdmin, string password)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             //Seed Default User
             var defaultUser = new ApplicationUser
             {
-                UserName = "administratorMummy",
-                Email = "mummyAdmin@gmail.com",
-                FirstName = "Main",
-                LastName = "Mummy",
+                UserName = newAdmin.UserName,
+                Email = newAdmin.Email,
+                FirstName = newAdmin.FirstName,
+                LastName = newAdmin.LastName,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
             };
@@ -45,7 +46,7 @@ namespace winter_intex_2_5.Services
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if (user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "123Pa$$word.");
+                    await userManager.CreateAsync(defaultUser, password);
                     await userManager.AddToRoleAsync(defaultUser, "Administrator");
                 }
 

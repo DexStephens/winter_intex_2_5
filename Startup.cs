@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
@@ -65,6 +66,13 @@ namespace winter_intex_2_5
                 });
             }
 
+            //services.AddSession(options =>
+            //{
+            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -88,8 +96,29 @@ namespace winter_intex_2_5
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            //create the admin user
+            ApplicationUser newAdmin = new ApplicationUser();
+            string password = "";
+
+            if(env.IsDevelopment())
+            {
+                newAdmin.UserName = Configuration.GetSection("Admin")["Username"];
+                newAdmin.FirstName = Configuration.GetSection("Admin")["First"];
+                newAdmin.LastName = Configuration.GetSection("Admin")["Last"];
+                password = Configuration.GetSection("Admin")["Password"];
+                newAdmin.Email = Configuration.GetSection("Admin")["Email"];
+            }
+            else
+            {
+                newAdmin.UserName = Configuration["AdminUsername"];
+                newAdmin.FirstName = Configuration["AdminFirst"];
+                newAdmin.LastName = Configuration["AdminLast"];
+                password = Configuration["AdminPassword"];
+                newAdmin.Email = Configuration["AdminEmail"];
+            }
+
             UserInitializer.InitializeAsync(serviceProvider).GetAwaiter().GetResult();
-            UserInitializer.SeedAdministratorAsync(serviceProvider).GetAwaiter().GetResult();
+            UserInitializer.SeedAdministratorAsync(serviceProvider, newAdmin, password).GetAwaiter().GetResult();
 
             app.UseHttpsRedirection();
 
@@ -116,12 +145,12 @@ namespace winter_intex_2_5
             });
 
             //CSP Header
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src 'self'");
-                await next();
-            });
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src 'self'");
+            //    await next();
+            //});
 
             app.UseRouting();
 
