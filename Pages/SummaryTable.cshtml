@@ -22,7 +22,7 @@
 
 </style>
 <div class="row">
-    <div class="col-md-9 d-flex" id="filterHandler">
+    <div class="col-md-9 d-flex align-items-center" id="filterHandler">
         <h3>Filtering Table</h3>
         <div id="downArrow" style="height: 30px; width: 30px; display: none;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -43,7 +43,7 @@
                         <h4>Hair Color:</h4>
                     </div>
                     <div class="py-1">
-                        <select asp-for="SummaryTableFilter.HairColors" asp-items="Model.SummaryTableDefaults.HairColors.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                        <select asp-for="SummaryTableFilter.HairColors" asp-items="Model.SummaryTableDefaults.HairColors.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedHairColors.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedHairColors[x]: x, Value = x})" multiple class="custom-select"></select>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -59,7 +59,7 @@
                         <h4>Age at Death:</h4>
                     </div>
                     <div class="py-1">
-                        <select asp-for="SummaryTableFilter.DeathAges" asp-items="Model.SummaryTableDefaults.DeathAges.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                        <select asp-for="SummaryTableFilter.DeathAges" asp-items="Model.SummaryTableDefaults.DeathAges.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedDeathAges.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedDeathAges[x] : x, Value = x})" multiple class="custom-select"></select>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -67,7 +67,7 @@
                         <h4>Head Direction:</h4>
                     </div>
                     <div class="py-1">
-                        <select asp-for="SummaryTableFilter.HeadDirections" asp-items="Model.SummaryTableDefaults.HeadDirections.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                        <select asp-for="SummaryTableFilter.HeadDirections" asp-items="Model.SummaryTableDefaults.HeadDirections.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedHeadDirections.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedHeadDirections[x] : x, Value = x})" multiple class="custom-select"></select>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -136,10 +136,13 @@
             </div>
             <button class="btn btn-outline-primary" type="submit">Filter Burial Records</button>
         </form>
+        <form method="post" asp-page-handler="Reset">
+            <button class="btn btn-outline-warning" type="submit">Reset Filters</button>
+        </form>
     </div>
 </div>
 
-<table class="table table-bordered table-primary">
+<table class="table table-bordered">
     <thead>
         <tr class="table-primary">
             <th>Textile color</th>

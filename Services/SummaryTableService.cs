@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -18,7 +19,7 @@ namespace winter_intex_2_5.Services
 
         public IEnumerable<SummaryTable> FilterSummaryRowItemsByCriteria(SummaryTableFilter summaryTableFilter)
         {
-            var filteredSummaryTables = _mummyRepository.SummaryTables;
+            var filteredSummaryTables = _mummyRepository.SummaryTables.Where(x => !string.IsNullOrEmpty(x.Depth));
 
             if(summaryTableFilter.TextileColors != null)
             {
@@ -36,7 +37,6 @@ namespace winter_intex_2_5.Services
             {
                 filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.HeadDirections.Contains(x.Headdirection));
             }
-            //make one for burialid
             if (summaryTableFilter.TextileFunctions != null)
             {
                 filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.TextileFunctions.Contains(x.Textilefunction));
@@ -45,6 +45,25 @@ namespace winter_intex_2_5.Services
             {
                 filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.HairColors.Contains(x.Haircolor));
             }
+            if(summaryTableFilter.MinDepth!= null)
+            {
+                filteredSummaryTables = filteredSummaryTables.Where(x => Convert.ToDecimal(x.Depth) >= summaryTableFilter.MinDepth);
+            }
+            if (summaryTableFilter.MaxDepth != null)
+            {
+                filteredSummaryTables = filteredSummaryTables.Where(x => Convert.ToDecimal(x.Depth) <= summaryTableFilter.MaxDepth);
+            }
+            if (summaryTableFilter.MinStature != null)
+            {
+                filteredSummaryTables = filteredSummaryTables.Where(x => x.Estimatestature >= summaryTableFilter.MinStature);
+            }
+            if (summaryTableFilter.MaxStature != null)
+            {
+                filteredSummaryTables = filteredSummaryTables.Where(x => x.Estimatestature <= summaryTableFilter.MaxStature);
+            }
+
+
+            //make one for burialid
 
             return filteredSummaryTables;
         }
