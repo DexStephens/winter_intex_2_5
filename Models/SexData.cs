@@ -17,12 +17,10 @@ namespace winter_intex_2_5.Models
         public float Depth { get; set; }   
         public float EastWest_W { get; set; }
         public float Length { get; set; }
-        public float Predictions { get; set; }
         public float PreservationBones { get; set; }
         public float PreservationBonesodyOnly { get; set; }
         public float PreservationFair { get; set; }
-        public float PreservationHeadless { get; set; }
-        public float Skeleton { get; set; }
+        public float PreservationHeadlessSkeleton { get; set; }
         public float PreservationPoor { get; set; }
         public float PreservationScatteredBonesWithSkull { get; set; }
         public float PreservationSkeletalized { get; set; } 
@@ -37,16 +35,18 @@ namespace winter_intex_2_5.Models
         public float Wrapping_H { get; set; }  
         public float Wrapping_W { get; set; }
 
-        public Tensor<T> AsTensor<T>() where T : struct
+        public Tensor<float> AsTensor()
         {
-            object[] data = new object[]
+            float[] data = new float[]
             {
-            MedianIncome, MedianHouseAge, AverageNumberOfRooms, AverageNumberOfBedrooms,
-            Population, AverageOccupancy, City, State
+                AdultSubadult_C, AgeatDeath_C, AgeatDeath_N, Area_NW, Area_SE, Area_SW, BurialNumber, Depth, EastWest_W, 
+                Length, PreservationBones, PreservationBonesodyOnly, PreservationFair, PreservationHeadlessSkeleton, 
+                PreservationPoor, PreservationScatteredBonesWithSkull, PreservationSkeletalized, PreservationSkeletalizedkullOnly, 
+                PreservationWrapped, SouthToFeet, SouthToHead, SquareEastWest, SquareNorthSouth, WestToFeet, WestToHead, Wrapping_H, 
+                Wrapping_W
             };
-            int[] dimensions = new int[] { 1, 8 };
-            var convertedData = data.Select(d => Convert.ChangeType(d, typeof(T))).ToArray();
-            return new DenseTensor<T>(convertedData as T[], dimensions);
+            int[] dimensions = new int[] { 1, 27 };
+            return new DenseTensor<float>(data, dimensions);
         }
     }
 }

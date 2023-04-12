@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using winter_intex_2_5.Models;
@@ -24,8 +25,8 @@ namespace winter_intex_2_5.Controllers
             {
                 NamedOnnxValue.CreateFromTensor("float_input", sexData.AsTensor())
             });
-            Tensor<float> score = result.First().AsTensor<float>();
-            var prediction = new SexPrediction { Sex = score.First() };
+            Tensor<string> score = result.First().AsTensor<string>();
+            var prediction = new SexPrediction { Sex = Convert.ToInt32(score.First()) };
             result.Dispose();
             return Ok(prediction);
         }

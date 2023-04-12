@@ -101,11 +101,14 @@ namespace winter_intex_2_5
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
 
-            //wrapping onnx singleton
-            services.AddSingleton<InferenceSession>(new InferenceSession("Models/wrapping_model2.onnx"));
+            //create onnx sessions
+            var predictSexSession = new SessionWrapper(new InferenceSession("Models/predict_sex2.onnx"));
+            var wrappingSession = new SessionWrapper(new InferenceSession("Models/wrapping_model2.onnx"));
 
-            //sex onnx singleton
-            services.AddSingleton<InferenceSession>(new InferenceSession("Models/predict_sex.onnx"));
+            services.AddSingleton(new InferenceSessions(predictSexSession, wrappingSession));
+
+
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
