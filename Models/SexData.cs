@@ -1,20 +1,41 @@
 ﻿using Microsoft.ML.OnnxRuntime.Tensors;
 using System;
 using System.Linq;
+using System.Security.Policy;
 
 namespace winter_intex_2_5.Models
 {
     public class SexData
     {
-        //not the actual values, just to stop errors right now
-        public float MedianIncome { get; set; }
-        public float MedianHouseAge { get; set; }
-        public float AverageNumberOfRooms { get; set; }
-        public float AverageNumberOfBedrooms { get; set; }
-        public int Population { get; set; }
-        public float AverageOccupancy { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public float AdultSubadult_C { get; set; }
+        public float AgeatDeath_C { get; set; }
+        public float AgeatDeath_N { get; set; }
+        public float Area_NW {get; set; } 
+        public float Area_SE { get; set; } 
+        public float Area_SW { get; set; } 
+        public float BurialNumber { get; set; }
+        public float Depth { get; set; }   
+        public float EastWest_W { get; set; }
+        public float Length { get; set; }
+        public float Predictions { get; set; }
+        public float PreservationBones { get; set; }
+        public float PreservationBonesodyOnly { get; set; }
+        public float PreservationFair { get; set; }
+        public float PreservationHeadless { get; set; }
+        public float Skeleton { get; set; }
+        public float PreservationPoor { get; set; }
+        public float PreservationScatteredBonesWithSkull { get; set; }
+        public float PreservationSkeletalized { get; set; } 
+        public float PreservationSkeletalizedkullOnly { get; set; }  
+        public float PreservationWrapped { get; set; }
+        public float SouthToFeet { get; set; } 
+        public float SouthToHead { get; set; } 
+        public float SquareEastWest { get; set; }  
+        public float SquareNorthSouth { get; set; } 
+        public float WestToFeet { get; set; }  
+        public float WestToHead { get; set; } 
+        public float Wrapping_H { get; set; }  
+        public float Wrapping_W { get; set; }
 
         public Tensor<T> AsTensor<T>() where T : struct
         {

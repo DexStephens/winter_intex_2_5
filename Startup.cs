@@ -98,8 +98,14 @@ namespace winter_intex_2_5
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.AddScoped<IMummyRepository, EFMummyRepository>();
-            services.AddSingleton<InferenceSession>(new InferenceSession("Models/wrapping_model2.onnx")); 
+
+            //wrapping onnx singleton
+            services.AddSingleton<InferenceSession>(new InferenceSession("Models/wrapping_model2.onnx"));
+
+            //sex onnx singleton
+            services.AddSingleton<InferenceSession>(new InferenceSession("Models/predict_sex.onnx"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()

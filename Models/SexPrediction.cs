@@ -2,6 +2,6 @@
 {
     public class SexPrediction
     {
-        public string Sex { get; set; }
+        public float Sex { get; set; }
     }
 }

@@ -20,7 +20,14 @@ namespace winter_intex_2_5.Controllers
         [HttpPost]
         public IActionResult ScoreSex(SexData sexData)
         {
-            return View();
+            var result = _inferenceSession.Run(new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("float_input", sexData.AsTensor())
+            });
+            Tensor<float> score = result.First().AsTensor<float>();
+            var prediction = new SexPrediction { Sex = score.First() };
+            result.Dispose();
+            return Ok(prediction);
         }
         [HttpPost]
         public IActionResult ScoreWrapping(WrappingData wrappingData)
