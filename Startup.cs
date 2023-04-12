@@ -99,7 +99,7 @@ namespace winter_intex_2_5
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddScoped<IMummyRepository, EFMummyRepository>();
-            services.AddSingleton<InferenceSession>(new InferenceSession("Models/")); //add in full model path
+            services.AddSingleton<InferenceSession>(new InferenceSession("Models/wrapping_model2.onnx")); 
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
