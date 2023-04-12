@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -98,6 +99,7 @@ namespace winter_intex_2_5
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddScoped<IMummyRepository, EFMummyRepository>();
+            services.AddSingleton<InferenceSession>(new InferenceSession("Models/")); //add in full model path
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
