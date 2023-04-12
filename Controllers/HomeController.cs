@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,21 @@ namespace winter_intex_2_5.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Burials()
+        {
+            return View();
+        }
+
+        public IActionResult Predictions()
+        {
+            return View();
+        }
+
+        public IActionResult Analysis()
         {
             return View();
         }

@@ -6,17 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+<<<<<<< HEAD
+=======
+using winter_intex_2_5.Models;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
 namespace winter_intex_2_5.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
+<<<<<<< HEAD
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
+=======
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public IndexModel(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,21 +45,43 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+<<<<<<< HEAD
+=======
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
+<<<<<<< HEAD
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+=======
+        private async Task LoadAsync(ApplicationUser user)
+        {
+            var userName = await _userManager.GetUserNameAsync(user);
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
             Username = userName;
 
             Input = new InputModel
             {
+<<<<<<< HEAD
                 PhoneNumber = phoneNumber
+=======
+                PhoneNumber = phoneNumber,
+                FirstName = firstName,
+                LastName = lastName
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             };
         }
 
@@ -65,6 +100,11 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+<<<<<<< HEAD
+=======
+            
+
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -77,6 +117,12 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+<<<<<<< HEAD
+=======
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -87,6 +133,21 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+<<<<<<< HEAD
+=======
+            if (Input.FirstName != firstName)
+            {
+                user.FirstName = Input.FirstName;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.LastName != lastName)
+            {
+                user.LastName = Input.LastName;
+                await _userManager.UpdateAsync(user);
+            }
+
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

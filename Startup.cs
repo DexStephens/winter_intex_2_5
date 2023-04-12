@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -13,11 +14,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+<<<<<<< HEAD
 using System.Reflection.Metadata;
+=======
+using System.Text.Json;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
 using winter_intex_2_5.Models;
+using winter_intex_2_5.Services;
 
 namespace winter_intex_2_5
 {
@@ -35,6 +41,16 @@ namespace winter_intex_2_5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // attempt to configure HTTPS forwarding
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            services.AddCertificateForwarding(options =>
+                options.CertificateHeader = "arn:aws:acm:us-east-1:803541727576:certificate/bbc77353-63fd-4471-b0e3-62c9fa50a175");
+
             if (_env.IsDevelopment())
             {
                 services.AddDbContext<MummyContext>(options =>
@@ -76,10 +92,7 @@ namespace winter_intex_2_5
                     options.Password.RequireLowercase = true;
                     options.Password.RequiredLength = 10;
                 });
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
-                        Configuration.GetConnectionString("DefaultConnection")));
+            }
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -89,37 +102,61 @@ namespace winter_intex_2_5
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.AddScoped<IMummyRepository, EFMummyRepository>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<MummyContext>()
+                .AddDefaultTokenProviders();
+
+            
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
-            app.UseHttpsRedirection();
+            //create the admin user
+            ApplicationUser newAdmin = new ApplicationUser();
+            string password = "";
+
+            if(env.IsDevelopment())
+            {
+                newAdmin.UserName = Configuration.GetSection("Admin")["Username"];
+                newAdmin.FirstName = Configuration.GetSection("Admin")["First"];
+                newAdmin.LastName = Configuration.GetSection("Admin")["Last"];
+                password = Configuration.GetSection("Admin")["Password"];
+                newAdmin.Email = Configuration.GetSection("Admin")["Email"];
+            }
+            else
+            {
+                newAdmin.UserName = Configuration["AdminUsername"];
+                newAdmin.FirstName = Configuration["AdminFirst"];
+                newAdmin.LastName = Configuration["AdminLast"];
+                password = Configuration["AdminPassword"];
+                newAdmin.Email = Configuration["AdminEmail"];
+            }
+
+            UserInitializer.InitializeAsync(serviceProvider).GetAwaiter().GetResult();
+            UserInitializer.SeedAdministratorAsync(serviceProvider, newAdmin, password).GetAwaiter().GetResult();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseForwardedHeaders();
                 app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseForwardedHeaders();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy(); // GDPR cookie policy
 
@@ -131,11 +168,20 @@ namespace winter_intex_2_5
             });
 
             //CSP Header
+<<<<<<< HEAD
             app.Use(async (ctx, next) =>
             {
                 ctx.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; font-src fonts.gstatic.com fonts.googleapis.com ; style-src 'self' fonts.googleapis.com; script-src 'self' 'unsafe-inline' ajax.googleapis.com nonce-random'");
                 await next();
             });
+=======
+            //app.Use(async (ctx, next) =>
+            //{
+            //    ctx.Response.Headers.Add("Content-Security-Policy",
+            //    "default-src 'self'");
+            //    await next();
+            //});
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
             app.UseRouting();
 

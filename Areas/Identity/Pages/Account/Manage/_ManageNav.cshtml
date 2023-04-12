@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿@inject SignInManager<IdentityUser> SignInManager
+=======
+﻿@using winter_intex_2_5.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

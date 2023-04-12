@@ -10,16 +10,27 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+<<<<<<< HEAD
+=======
+using winter_intex_2_5.Models;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
 namespace winter_intex_2_5.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
+<<<<<<< HEAD
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
 
         public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+=======
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEmailSender _emailSender;
+
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
         {
             _userManager = userManager;
             _emailSender = emailSender;

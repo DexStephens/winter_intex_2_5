@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+<<<<<<< HEAD
+=======
+using System.Net.Mail;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -13,20 +17,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+<<<<<<< HEAD
+=======
+using winter_intex_2_5.Models;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
 namespace winter_intex_2_5.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
+<<<<<<< HEAD
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+=======
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
+<<<<<<< HEAD
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
+=======
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -46,6 +64,17 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+<<<<<<< HEAD
+=======
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -74,7 +103,11 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+=======
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName };
+>>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -26,7 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".ebextensions\https-redirect.config" />
+    <Folder Include=".ebextensions\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include=".ebextensions\securelistener-alb.config" />
+    <None Include=".ebextensions\alb-http-to-https-redirection-full.config" />
+  </ItemGroup>
 </Project>
