@@ -4,11 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - winter_intex_2_5</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel ="stylesheet" href="~/css/normalize.css"/>
     <link rel="stylesheet" href="~/css/webflow.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" title="boot" />
     <link rel="stylesheet" href="~/css/intex.css" />
+
+   
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+    <script src="~/js/ajax.js" type="text/javascript"></script>
+    <script nonce="random" type="text/javascript">WebFont.load({ google: { families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Federo:regular", "Lora:regular"] } });</script>
     
     <base href="~/" />
 </head>
@@ -23,13 +30,8 @@
                             <div class="nav-menu-three">
                                 <ul role="list" class="nav-menu-block w-list-unstyled">
                                     <li>
-                                        <a href="#" class="nav-link">Home</a>
+                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Summary">Summary</a>
-                                    </li>
-
                                     <li>
                                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Summary">Burial Summary</a>
                                     </li>

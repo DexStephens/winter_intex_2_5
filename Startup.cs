@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
@@ -132,8 +133,7 @@ namespace winter_intex_2_5
             //CSP Header
             app.Use(async (ctx, next) =>
             {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src 'self'");
+                ctx.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; font-src fonts.gstatic.com fonts.googleapis.com ; style-src 'self' fonts.googleapis.com; script-src 'self' 'unsafe-inline' ajax.googleapis.com nonce-random'");
                 await next();
             });
 
