@@ -64,6 +64,7 @@ namespace winter_intex_2_5
                     options.ClientId = Configuration["GoogleClientId"];
                     options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
+            }
 
 
                 services.Configure<IdentityOptions>(options =>
