@@ -27,11 +27,6 @@ namespace winter_intex_2_5.Controllers
         {
             return View();
         }
-        public IActionResult Summary()
-        {
-            List<SummaryTableRowItem> summaryTableRowItems = new SummaryTableService(_mummyRepository).OriginalLoadBurials();
-            return View(summaryTableRowItems);
-        }
 
         public IActionResult Privacy()
         {

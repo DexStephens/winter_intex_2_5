@@ -62,6 +62,7 @@ namespace winter_intex_2_5.Data.Repositories
         public IQueryable<Structure> Structures => Context.Structure;
 
         public IQueryable<StructureTextile> StructuresTextiles => Context.StructureTextile;
+        public IQueryable<SummaryTable> SummaryTables => Context.SummaryTable;
 
         public IQueryable<Teammember> Teammembers => Context.Teammember;
 

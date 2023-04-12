@@ -34,6 +34,7 @@ namespace winter_intex_2_5.Data.Repositories
         IQueryable<Photoform> Photoforms { get; }
         IQueryable<Structure> Structures { get; }
         IQueryable<StructureTextile> StructuresTextiles { get; }
+        IQueryable<SummaryTable> SummaryTables { get; }
         IQueryable<Teammember> Teammembers { get; }
         IQueryable<Textile> Textiles { get; }
         IQueryable<Textilefunction> TextilesFunctions { get; }

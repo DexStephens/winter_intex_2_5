@@ -78,6 +78,8 @@ namespace winter_intex_2_5
                 });
             }
 
+            services.AddRazorPages();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
