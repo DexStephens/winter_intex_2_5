@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -9,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
@@ -36,6 +37,16 @@ namespace winter_intex_2_5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // attempt to configure HTTPS forwarding
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            services.AddCertificateForwarding(options =>
+                options.CertificateHeader = "arn:aws:acm:us-east-1:803541727576:certificate/bbc77353-63fd-4471-b0e3-62c9fa50a175");
+
             if (_env.IsDevelopment())
             {
                 services.AddDbContext<MummyContext>(options =>
@@ -66,6 +77,7 @@ namespace winter_intex_2_5
                     options.ClientId = Configuration["GoogleClientId"];
                     options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
+            }
 
 
                 services.Configure<IdentityOptions>(options =>
@@ -76,7 +88,6 @@ namespace winter_intex_2_5
                     options.Password.RequireLowercase = true;
                     options.Password.RequiredLength = 10;
                 });
-            }
 
             services.AddRazorPages();
 
@@ -128,20 +139,21 @@ namespace winter_intex_2_5
             UserInitializer.InitializeAsync(serviceProvider).GetAwaiter().GetResult();
             UserInitializer.SeedAdministratorAsync(serviceProvider, newAdmin, password).GetAwaiter().GetResult();
 
-            app.UseHttpsRedirection();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseForwardedHeaders();
                 app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseForwardedHeaders();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy(); // GDPR cookie policy
 
