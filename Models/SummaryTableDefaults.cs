@@ -4,15 +4,15 @@ namespace winter_intex_2_5.Models
 {
     public class SummaryTableDefaults
     {
-        public List<string> HairColors { get; set; }    
+        public IEnumerable<string> HairColors { get; set; }    
         public IEnumerable<string> Structures { get; set; }
-        public List<string> DeathAges { get; set; }
-        public List<string> HeadDirections { get; set; }
-        public List<string> TextileFunctions { get; set; }
-        public List<string> TextileColors { get; set; }
+        public IEnumerable<string> DeathAges { get; set; }
+        public IEnumerable<string> HeadDirections { get; set; }
+        public IEnumerable<string> TextileFunctions { get; set; }
+        public IEnumerable<string> TextileColors { get; set; }
         public IEnumerable<string> BurialIDs { get; set; }
 
-        public SummaryTableDefaults(List<string> hairColors, IEnumerable<string> structures, List<string> deathAges, List<string> headDirections, List<string> textileFunctions, List<string> textileColors, IEnumerable<string> burialIDs)
+        public SummaryTableDefaults(IEnumerable<string> hairColors, IEnumerable<string> structures, IEnumerable<string> deathAges, IEnumerable<string> headDirections, IEnumerable<string> textileFunctions, IEnumerable<string> textileColors, IEnumerable<string> burialIDs)
         {
             HairColors = hairColors;
             Structures = structures;

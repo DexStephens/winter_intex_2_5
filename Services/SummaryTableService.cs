@@ -43,7 +43,7 @@ namespace winter_intex_2_5.Services
             }
             if (summaryTableFilter.HairColors != null)
             {
-                filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.HairColors.Contains(x.Hair));
+                filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.HairColors.Contains(x.Haircolor));
             }
 
             return filteredSummaryTables;

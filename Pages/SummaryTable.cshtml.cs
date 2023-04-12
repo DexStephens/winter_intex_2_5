@@ -24,7 +24,7 @@ namespace winter_intex_2_5.Pages
         {
             SummaryTableFilter = filteredSummaryTableFilter ?? new SummaryTableFilter();
             SummaryTables = MummyRepository.SummaryTables;
-            SummaryTableDefaults = new SummaryTableDefaults(MummyRepository.Burialmains.Select(x => x.Haircolor).Distinct().OrderBy(x => x).ToList(), MummyRepository.Structures.Select(x => x.Value).Distinct().OrderBy(x => x), MummyRepository.Burialmains.Select(x => x.Ageatdeath).OrderBy(x => x).Distinct().ToList(), MummyRepository.Burialmains.Select(x => x.Headdirection).Distinct().OrderBy(x => x).ToList(), MummyRepository.TextilesFunctions.Select(x => x.Value).Distinct().OrderBy(x => x).ToList(), MummyRepository.Colors.Select(x => x.Value).Distinct().OrderBy(x => x).ToList(), SummaryTables.Select(x => x.Burialid).Distinct());
+            SummaryTableDefaults = new SummaryTableDefaults(SummaryTables.Select(x => x.Haircolor).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Structure).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Ageatdeath).OrderBy(x => x).Distinct(), SummaryTables.Select(x => x.Headdirection).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Textilefunction).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Haircolor).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Burialid).Distinct());
         }
 
         public void OnPost(SummaryTableFilter summaryTableFilter)
@@ -32,8 +32,8 @@ namespace winter_intex_2_5.Pages
             if(ModelState.IsValid)
             {
                 SummaryTableFilter = summaryTableFilter;
-                SummaryTableDefaults = new SummaryTableDefaults(MummyRepository.Burialmains.Select(x => x.Haircolor).Distinct().OrderBy(x => x).ToList(), MummyRepository.Structures.Select(x => x.Value).Distinct().OrderBy(x => x), MummyRepository.Burialmains.Select(x => x.Ageatdeath).OrderBy(x => x).Distinct().ToList(), MummyRepository.Burialmains.Select(x => x.Headdirection).Distinct().OrderBy(x => x).ToList(), MummyRepository.TextilesFunctions.Select(x => x.Value).Distinct().OrderBy(x => x).ToList(), MummyRepository.Colors.Select(x => x.Value).Distinct().OrderBy(x => x).ToList(), SummaryTables.Select(x => x.Burialid).Distinct());
                 SummaryTables = new SummaryTableService(MummyRepository).FilterSummaryRowItemsByCriteria(summaryTableFilter);
+                SummaryTableDefaults = new SummaryTableDefaults(SummaryTables.Select(x => x.Haircolor).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Structure).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Ageatdeath).OrderBy(x => x).Distinct(), SummaryTables.Select(x => x.Headdirection).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Textilefunction).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Haircolor).Distinct().OrderBy(x => x), SummaryTables.Select(x => x.Burialid).Distinct());
             }
         }
     }

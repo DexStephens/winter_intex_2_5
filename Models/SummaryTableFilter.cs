@@ -4,12 +4,12 @@ namespace winter_intex_2_5.Models
 {
     public class SummaryTableFilter
     {
-        public List<string>? HairColors { get; set; }    
-        public List<string>? Structures { get; set; }
-        public List<string>? DeathAges { get; set; }
-        public List<string>? HeadDirections { get; set; }
-        public List<string>? TextileFunctions { get; set; }
-        public List<string> TextileColors { get; set; }
+        public IEnumerable<string>? HairColors { get; set; }    
+        public IEnumerable<string>? Structures { get; set; }
+        public IEnumerable<string>? DeathAges { get; set; }
+        public IEnumerable<string>? HeadDirections { get; set; }
+        public IEnumerable<string>? TextileFunctions { get; set; }
+        public IEnumerable<string> TextileColors { get; set; }
         public IEnumerable<string> BurialIDs { get; set; }
         public bool Male { get; set; }
         public bool Female { get; set; }
@@ -19,7 +19,7 @@ namespace winter_intex_2_5.Models
         public int? MaxStature { get;set; }
         public SummaryTableFilter() { }
 
-        public SummaryTableFilter(List<string>? hairColors, List<string>? structures, List<string>? deathAges, List<string>? headDirections, List<string>? textileFunctions, List<string>? textileColors, IEnumerable<string> burialIDs, bool male, bool female, int? minDepth, int? maxDepth, int? minStature, int? maxStature)
+        public SummaryTableFilter(IEnumerable<string>? hairColors, IEnumerable<string>? structures, IEnumerable<string>? deathAges, IEnumerable<string>? headDirections, IEnumerable<string>? textileFunctions, IEnumerable<string>? textileColors, IEnumerable<string> burialIDs, bool male, bool female, int? minDepth, int? maxDepth, int? minStature, int? maxStature)
         {
             HairColors = hairColors;
             Structures = structures;
