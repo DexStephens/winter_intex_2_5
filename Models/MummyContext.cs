@@ -219,6 +219,8 @@ namespace winter_intex_2_5.Models
                     .HasColumnName("textilefunction")
                     .HasMaxLength(200);
 
+                entity.Property(e => e.Textileid).HasColumnName("textileid");
+
                 entity.Property(e => e.Westtofeet)
                     .HasColumnName("westtofeet")
                     .HasMaxLength(200);

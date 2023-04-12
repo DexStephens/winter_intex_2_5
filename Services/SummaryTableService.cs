@@ -44,6 +44,10 @@ namespace winter_intex_2_5.Services
             {
                 filteredSummaryTables = filteredSummaryTables.Where(x => summaryTableFilter.HairColors.Contains(x.Haircolor));
             }
+            if(summaryTableFilter.MinDepth != null || summaryTableFilter.MaxDepth != null)
+            {
+                filteredSummaryTables = filteredSummaryTables.Where(x => x.Depth != "U");
+            }
             if(summaryTableFilter.MinDepth!= null)
             {
                 filteredSummaryTables = filteredSummaryTables.Where(x => Convert.ToDecimal(x.Depth) >= summaryTableFilter.MinDepth);
