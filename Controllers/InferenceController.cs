@@ -21,6 +21,16 @@ namespace winter_intex_2_5.Controllers
             _predictWrappingSession = inferenceSessions.WrappingSession;
         }
 
+        public IActionResult Sex()
+        {
+            return View();
+        }
+
+        public IActionResult Wrapping()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public IActionResult ScoreSex(SexData sexData)
