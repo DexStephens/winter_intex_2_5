@@ -34,6 +34,7 @@ namespace winter_intex_2_5
 
         public IConfiguration Configuration { get; }
 
+        // add MFA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
