@@ -10,15 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-<<<<<<< HEAD
-using System.Reflection.Metadata;
-=======
-using System.Text.Json;
->>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
@@ -92,7 +88,6 @@ namespace winter_intex_2_5
                     options.Password.RequireLowercase = true;
                     options.Password.RequiredLength = 10;
                 });
-            }
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -168,20 +163,12 @@ namespace winter_intex_2_5
             });
 
             //CSP Header
-<<<<<<< HEAD
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; font-src fonts.gstatic.com fonts.googleapis.com ; style-src 'self' fonts.googleapis.com; script-src 'self' 'unsafe-inline' ajax.googleapis.com nonce-random'");
-                await next();
-            });
-=======
             //app.Use(async (ctx, next) =>
             //{
             //    ctx.Response.Headers.Add("Content-Security-Policy",
             //    "default-src 'self'");
             //    await next();
             //});
->>>>>>> c2bf18ce757bc07045bf2c8f79c013a294111189
 
             app.UseRouting();
 
