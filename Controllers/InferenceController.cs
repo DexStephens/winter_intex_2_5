@@ -6,22 +6,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using winter_intex_2_5.Models;
+using winter_intex_2_5.Services;
 
 namespace winter_intex_2_5.Controllers
 {
     public class InferenceController : Controller
     {
-        private InferenceSession _inferenceSession;
+        private InferenceSession _predictSexSession;
+        private InferenceSession _predictWrappingSession;
 
-        public InferenceController(InferenceSession inferenceSession)
+        public InferenceController(InferenceSessions inferenceSessions)
         {
-            _inferenceSession = inferenceSession;
+            _predictSexSession = inferenceSessions.PredictSexSession;
+            _predictWrappingSession = inferenceSessions.WrappingSession;
         }
+
 
         [HttpPost]
         public IActionResult ScoreSex(SexData sexData)
         {
-            var result = _inferenceSession.Run(new List<NamedOnnxValue>
+            var result = _predictSexSession.Run(new List<NamedOnnxValue>
             {
                 NamedOnnxValue.CreateFromTensor("float_input", sexData.AsTensor())
             });
@@ -33,7 +37,7 @@ namespace winter_intex_2_5.Controllers
         [HttpPost]
         public IActionResult ScoreWrapping(WrappingData wrappingData)
         {
-            var result = _inferenceSession.Run(new List<NamedOnnxValue>
+            var result = _predictWrappingSession.Run(new List<NamedOnnxValue>
             {
                 NamedOnnxValue.CreateFromTensor("float_input", wrappingData.AsTensor())
             });

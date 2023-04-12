@@ -1,11 +1,13 @@
-﻿namespace winter_intex_2_5.Services
+﻿using Microsoft.ML.OnnxRuntime;
+
+namespace winter_intex_2_5.Services
 {
     public class InferenceSessions
     {
-        public SessionWrapper PredictSexSession { get; set; }
-        public SessionWrapper WrappingSession { get; set; }
+        public InferenceSession PredictSexSession { get; set; }
+        public InferenceSession WrappingSession { get; set; }
 
-        public InferenceSessions(SessionWrapper predictSexSession, SessionWrapper wrappingSession)
+        public InferenceSessions(InferenceSession predictSexSession, InferenceSession wrappingSession)
         {
             PredictSexSession = predictSexSession;
             WrappingSession = wrappingSession;
