@@ -1,11 +1,20 @@
 ﻿@page
 @model winter_intex_2_5.Pages.SexPredictionModel
 
+@{
+    ViewData["Title"] = "Predict Sex";
+}
+
 
 <div class="container">
     <main class="main-wrapper">
         <h1>Predict Mummy Sex</h1>
-
+        <div>
+            <h3>About these predictions:</h3>
+            <p>Mummy sex predictions are generated based on a model trained using a dataset of 230 Fag El-Gamous burials where sex was recorded. The model is built with a Histogram Gradient Boosting Classifier. We chose this particular algorithm for its effectiveness in handling missing data and its ability to scale for future use. The model has an accuracy of <b>97%</b>, although we acknowledge that all predictions may not be accurate due to limitations in the data.</p>
+        </div>
+        <br />
+        <h3 class="text-center">Try it Out:</h3>
         <form method="post">
             <div class="row">
                 <div class="col-3 form-group">
@@ -24,7 +33,7 @@
                 <div class="col-3 form-group">
                     <label for="area">Area</label>
                     <br />
-                    <select asp-for="SexData.AreaDropdown" asp-items="Model.SexPredictionDefaults.AreaItems"  id="area" class="form-control"></select>
+                    <select asp-for="SexData.AreaDropdown" asp-items="Model.SexPredictionDefaults.AreaItems" id="area" class="form-control"></select>
                 </div>
             </div>
             <div class="row">
@@ -80,7 +89,7 @@
                     <button type="submit" class="btn btn-primary">Predict Sex</button>
                 </div>
             </div>
-            
+
         </form>
         <br />
         <div>
@@ -100,8 +109,8 @@
             }
         </div>
     </main>
- </div>
-   
+</div>
+
 
 
 

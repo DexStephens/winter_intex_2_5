@@ -1,9 +1,21 @@
 ﻿@page
 @model winter_intex_2_5.Pages.WrappingPredictionModel
 
+@{
+    ViewData["Title"] = "Predict Wrapping";
+}
+
+
+
 <div class="container">
     <main class="main-wrapper">
         <h1>Predict Wrapping Style</h1>
+        <div>
+            <h3>About these predictions:</h3>
+            <p>Wrapping style predictions are generated based on a model trained using a dataset of 124 Fag El-Gamous burials where wrapping style was recorded. The model is built with a Gradient Boosting Classifier. We chose this particular algorithm for its speed and accuracy compared to other models. The model has an accuracy of <b>95%</b>, although we acknowledge that all predictions may not be accurate due to limitations in the data.</p>
+        </div>
+        <br />
+        <h3 class="text-center">Try it Out:</h3>
         <form method="post">
             <h3>General</h3>
             <div class="row">
@@ -153,8 +165,8 @@
         </div>
     </main>
 </div>
-       
-       
-    
+
+
+
 
 
