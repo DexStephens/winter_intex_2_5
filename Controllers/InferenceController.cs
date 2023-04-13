@@ -39,8 +39,8 @@ namespace winter_intex_2_5.Controllers
             {
                 NamedOnnxValue.CreateFromTensor("float_input", sexData.AsTensor())
             });
-            Tensor<string> score = result.First().AsTensor<string>();
-            var prediction = new SexPrediction { Sex = Convert.ToInt32(score.First()) };
+            Tensor<Int64> score = result.First().AsTensor<Int64>();
+            var prediction = new SexPrediction { Sex = score.First() };
             result.Dispose();
             return Ok(prediction);
         }
