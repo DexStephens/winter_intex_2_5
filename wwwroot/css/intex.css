@@ -1004,3 +1004,8 @@ img {
     -ms-grid-row-span: 1;
     grid-row-end: span 1;
 }
+
+.big-checkbox {
+    width: 24px;
+    height: 24px;
+}

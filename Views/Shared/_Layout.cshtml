@@ -43,9 +43,9 @@
                                                 </a>
                                             </div>
                                             <ul class="list-unstyled nav-dropdown-list shadow-three mobile-shadow-hide dropdown-list">
-                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Predictions">Predict Sex</a></li>
+                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-page="/SexPrediction">Predict Sex</a></li>
                                                 @*asp-page=“/SexPrediction”*@
-                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="">Predict Wrapping Style</a></li>
+                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-page="/WrappingPrediction">Predict Wrapping Style</a></li>
                                                 @*asp-page=“/WrappingPrediction”*@
                                                 <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Analysis">Data Visualizations</a></li>
                                             </ul>
@@ -76,7 +76,8 @@
                         <div id="w-node-_4d026814-4e0a-e576-cb98-7b971368da6a-1368da64" class="footer-block">
                             <div class="title-small">Data</div>
                             <a asp-controller="Home" asp-action="Summary" class="footer-link">View Burials</a>
-                            <a asp-controller="Home" asp-action="Predictions" class="footer-link">Predict Sex</a>
+                            <a asp-page="/SexPrediction" class="footer-link">Predict Sex</a>
+                            <a asp-page="/WrappingPrediction" class="footer-link">Predict Wrapping Type</a>
                             <a asp-controller="Home" asp-action="Analysis" class="footer-link">Data Visualizations</a>
                         </div>
                         <div id="w-node-_4d026814-4e0a-e576-cb98-7b971368da6a-1368da64" class="footer-block">

@@ -3,138 +3,158 @@
 
 <div class="container">
     <main class="main-wrapper">
-        <h1>This is for wrapping predictions</h1>
+        <h1>Predict Wrapping Style</h1>
         <form method="post">
+            <h3>General</h3>
             <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="burialNumber">Burial Number:</label>
-                        <input asp-for="WrappingData.BurialNumber" class="form-control" id="burialNumber" >
-                    </div>
-                    <div class="form-group">
-                        <label for="depth">Depth:</label>
-                        <input asp-for="WrappingData.Depth" class="form-control" id="depth" >
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="squareNorthSouth">Square North South:</label>
+                    <input asp-for="WrappingData.SquareNorthSouth" class="form-control" id="squareNorthSouth">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="femurHeadDiameter">Femur Head Diameter:</label>
-                        <input asp-for="WrappingData.FemurHeadDiameter" class="form-control" id="femurHeadDiameter" >
-                    </div>
-                    <div class="form-group">
-                        <label for="femurLength">Femur Length:</label>
-                        <input asp-for="WrappingData.FemurLength" class="form-control" id="femurLength" >
-                    </div>
-                    <div class="form-group">
-                        <label for="length">Length:</label>
-                        <input asp-for="WrappingData.Length" class="form-control" id="length" >
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="squareEastWest">Square East West:</label>
+                    <input asp-for="WrappingData.SquareEastWest" class="form-control" id="squareEastWest">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="southToFeet">South to Feet:</label>
-                        <input asp-for="WrappingData.SouthToFeet" class="form-control" id="southToFeet" >
-                    </div>
-                    <div class="form-group">
-                        <label for="southToHead">South to Head:</label>
-                        <input asp-for="WrappingData.SouthToHead" class="form-control" id="southToHead" >
-                    </div>
-                    <div class="form-group">
-                        <label for="squareEastWest">Square East West:</label>
-                        <input asp-for="WrappingData.SquareEastWest" class="form-control" id="squareEastWest" >
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="eastWest">East/West</label>
+                    <br />
+                    <select asp-for="WrappingData.EastWestDropdown" asp-items="Model.WrappingPredictionDefaults.EastWestItems" id="eastWest" class="form-control"></select>
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="squareNorthSouth">Square North South:</label>
-                        <input asp-for="WrappingData.SquareNorthSouth" class="form-control" id="squareNorthSouth" >
-                    </div>
-                    <div class="form-group">
-                        <label for="westToFeet">West to Feet:</label>
-                        <input asp-for="WrappingData.WestToFeet" class="form-control" id="westToFeet" >
-                    </div>
-                    <div class="form-group">
-                        <label for="westToHead">West to Head:</label>
-                        <input asp-for="WrappingData.WestToHead" class="form-control" id="westToHead">
-                    </div>
-                    <div class="form-group">
-                        <label for="cluster">In Cluster?</label>
-                        <input asp-for="WrappingData.ClusterCheckbox" class="form-control" id="cluster">
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="area">Area:</label>
+                    <br />
+                    <select asp-for="WrappingData.AreaDropdown" asp-items="Model.WrappingPredictionDefaults.AreaItems" id="area" class="form-control"></select>
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="toothEruption">Tooth Eruption?</label>
-                        <input asp-for="WrappingData.ToothEruptionCheckbox" class="form-control" id="toothEruption">
-                    </div>
-                    <div class="form-group">
-                        <label for="subAdult">Adult Sub Adult:</label>
-                        <select asp-for="WrappingData.SubAdultDropdown" asp-items="Model.WrappingPredictionDefaults.SubAdultItems" id="subAdult" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="headDirection">Head Direction:</label>
-                        <select asp-for="WrappingData.HeadDirectionDropdown" asp-items="Model.WrappingPredictionDefaults.HeadDirectionItems" id="headDirection" class="form-control"></select>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="burialNumber">Burial Number:</label>
+                    <input asp-for="WrappingData.BurialNumber" class="form-control" id="burialNumber">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="area">Area:</label>
-                        <select asp-for="WrappingData.AreaDropdown" asp-items="Model.WrappingPredictionDefaults.AreaItems" id="area" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="supraOrbital">Supraorbital Ridges:</label>
-                        <select asp-for="WrappingData.SupraOrbitalDropdown" asp-items="Model.WrappingPredictionDefaults.SupraOrbitalItems" id="supraOrbital" class="form-control"></select>
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="depth">Depth:</label>
+                    <input asp-for="WrappingData.Depth" class="form-control" id="depth">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="orbitEdge">Orbit Edge</label>
-                        <select asp-for="WrappingData.OrbitEdgeItems" asp-items="Model.WrappingPredictionDefaults.OrbitEdgeItems" id="orbitEdge" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="gonion">Gonion</label>
-                        <select asp-for="WrappingData.GonionDropdown" asp-items="Model.WrappingPredictionDefaults.GonionItems" id="gonion" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="zygomatic">Zygomatic Crest:</label>
-                        <select asp-for="WrappingData.ZygomaticDropdown" asp-items="Model.WrappingPredictionDefaults.ZygomaticItems" id="zygomatic" class="form-control"></select>
-                    </div>
+                <div class="col-3 form-group">
+                    <label for="length">Length:</label>
+                    <input asp-for="WrappingData.Length" class="form-control" id="length">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="toothAttrition">Tooth Attrition:</label>
-                        <select asp-for="WrappingData.ToothAttritionDropdown" asp-items="Model.WrappingPredictionDefaults.ToothAttritionItems" id="toothAttrition" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="toothEruptionAge">Tooth Eruption Age Estimate:</label>
-                        <select asp-for="WrappingData.ToothEruptionAgeDropdown" asp-items="Model.WrappingPredictionDefaults.ToothEruptionAgeItems" id="toothEruptionAge" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="sciatic">Sciatic Notch</label> 
-                        <select asp-for="WrappingData.SciaticNotchDropdown" asp-items="Model.WrappingPredictionDefaults.SciaticNotchItems" id="sciatic" class="form-control"></select>
-                    </div>
+                <div class="col-3 form-group custom-checkbox">
+                    <label for="cluster">In Cluster?</label>
+                    <input asp-for="WrappingData.ClusterCheckbox" class="form-control big-checkbox" id="cluster">
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="hairColor">Hair Color:</label>
-                        <select asp-for="WrappingData.HairColorDropdown" asp-items="Model.WrappingPredictionDefaults.HairColorItems" id="hairColor" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="eastWest">East/West</label>
-                        <select asp-for="WrappingData.EastWestDropdown" asp-items="Model.WrappingPredictionDefaults.EastWestItems" id="eastWest" class="form-control"></select>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="southToFeet">South to Feet:</label>
+                    <input asp-for="WrappingData.SouthToFeet" class="form-control" id="southToFeet">
                 </div>
-                <button type="submit" class="btn btn-primary">Predict Wrapping</button>
+                <div class="col-3 form-group">
+                    <label for="southToHead">South to Head:</label>
+                    <input asp-for="WrappingData.SouthToHead" class="form-control" id="southToHead">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="westToFeet">West to Feet:</label>
+                    <input asp-for="WrappingData.WestToFeet" class="form-control" id="westToFeet">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="westToHead">West to Head:</label>
+                    <input asp-for="WrappingData.WestToHead" class="form-control" id="westToHead">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="headDirection">Head Direction:</label>
+                    <select asp-for="WrappingData.HeadDirectionDropdown" asp-items="Model.WrappingPredictionDefaults.HeadDirectionItems" id="headDirection" class="form-control"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="subAdult">Adult Sub Adult:</label>
+                    <select asp-for="WrappingData.SubAdultDropdown" asp-items="Model.WrappingPredictionDefaults.SubAdultItems" id="subAdult" class="form-control"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="hairColor">Hair Color:</label>
+                    <select asp-for="WrappingData.HairColorDropdown" asp-items="Model.WrappingPredictionDefaults.HairColorItems" id="hairColor" class="form-control"></select>
+                </div>
+            </div>
+            <h3>Bone Data</h3>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="femurHeadDiameter">Femur Head Diameter:</label>
+                    <input asp-for="WrappingData.FemurHeadDiameter" class="form-control" id="femurHeadDiameter">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="femurLength">Femur Length:</label>
+                    <input asp-for="WrappingData.FemurLength" class="form-control" id="femurLength">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="sciatic">Sciatic Notch</label>
+                    <select asp-for="WrappingData.SciaticNotchDropdown" asp-items="Model.WrappingPredictionDefaults.SciaticNotchItems" id="sciatic" class="form-control"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="gonion">Gonion</label>
+                    <select asp-for="WrappingData.GonionDropdown" asp-items="Model.WrappingPredictionDefaults.GonionItems" id="gonion" class="form-control"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="supraOrbital">Supraorbital Ridges:</label>
+                    <select asp-for="WrappingData.SupraOrbitalDropdown" asp-items="Model.WrappingPredictionDefaults.SupraOrbitalItems" id="supraOrbital" class="form-control"></select>
+                </div>
+                <div class="col-3 form-group">
+                    <label for="orbitEdge">Orbit Edge</label>
+                    <select asp-for="WrappingData.OrbitEdgeItems" asp-items="Model.WrappingPredictionDefaults.OrbitEdgeItems" id="orbitEdge" class="form-control"></select>
+                </div>
+
+                <div class="col-3 form-group">
+                    <label for="zygomatic">Zygomatic Crest:</label>
+                    <select asp-for="WrappingData.ZygomaticDropdown" asp-items="Model.WrappingPredictionDefaults.ZygomaticItems" id="zygomatic" class="form-control"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="toothAttrition">Tooth Attrition:</label>
+                    <select asp-for="WrappingData.ToothAttritionDropdown" asp-items="Model.WrappingPredictionDefaults.ToothAttritionItems" id="toothAttrition" class="form-control"></select>
+                </div>
+                <div class="col-3 form-group custom-checkbox">
+                    <label for="toothEruption">Tooth Eruption?</label>
+                    <input asp-for="WrappingData.ToothEruptionCheckbox" class="form-control big-checkbox" id="toothEruption">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="toothEruptionAge">Tooth Eruption Age Estimate:</label>
+                    <select asp-for="WrappingData.ToothEruptionAgeDropdown" asp-items="Model.WrappingPredictionDefaults.ToothEruptionAgeItems" id="toothEruptionAge" class="form-control"></select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">Predict Wrapping</button>
+                </div>
             </div>
         </form>
-        @if(Model.WrappingPrediction != null)
-        {
-            <div class="alert alert-success">
-                <h1>Wrapping Prediction</h1>
-                <h4>@Model.WrappingPrediction.Wrapping</h4>
-            </div>
-        }
+        <div>
+            @if (Model.WrappingPrediction != null)
+            {
+                <div class="alert alert-success">
+                    <h1>Wrapping Prediction:</h1>
+                    @if (Model.WrappingPrediction.Wrapping == "B")
+                    {
+                        <h4>Bones (no textiles)</h4>
+                    }
+                    else if (Model.WrappingPrediction.Wrapping == "H")
+                    {
+                        <h4>Half wrapped (partially deteriorated textiles)</h4>
+                    }
+                    else if (Model.WrappingPrediction.Wrapping == "W")
+                    {
+                        <h4>Whole wrapped (textiles complete or nearly so)</h4>
+                    }
+                </div>
+            }
+        </div>
     </main>
 </div>
+       
+       
+    
 
 
