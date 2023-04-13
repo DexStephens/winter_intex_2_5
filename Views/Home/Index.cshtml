@@ -13,15 +13,15 @@
                         </div>
                         <div class="home-header-content">
                             <div id="w-node-_5b2b227b-c935-3e3e-da1c-a9797ba2f95c-367a0ffb" class="hide-mobile-landscape">
-                                <p class="text-align-center">Welcome to Fag el-Gamous, an ancient Egyptian site located roughly 80 miles southwest of Cairo. <br>‍<br>Our team of archaeologists and researchers have been working tirelessly to uncover the secrets of this ancient site, and we are excited to share our findings with you!<br></p>
+                                <p class="text-align-center">Welcome to Fag el-Gamous, an ancient Egyptian site located roughly 80 miles southwest of Cairo. <br>‍<br>Our team of archaeologists specializes in the excavation and study of mummies and ancient burial remains. <br></p>
                             </div>
                             <div id="w-node-b7023e0c-57e7-a58d-510d-3ddf420b41c2-367a0ffb" class="home-header-image-wrapper"><img src="~/img/e12.png" loading="eager" width="640" sizes="(max-width: 479px) 100vw, (max-width: 767px) 138.3125px, (max-width: 991px) 18vw, 42vw" alt="" class="image-cover"></div>
                             <div id="w-node-fbf5ae0c-ea1a-4e25-7eb4-058c3fd4d360-367a0ffb" class="hide-mobile-landscape">
-                                <p class="text-align-center">From the excavation of burial grounds and recovery of artifacts, our work has provided valuable insights into the lives and customs of the people who lived here 1,500 years ago. <br><br>This application is intended to provide researchers and the public a site to do some digging of their own. </p>
+                                <p class="text-align-center">From the excavation of burial grounds and recovery of artifacts, our work has provided valuable insights into the lives and customs of the people who lived over 1,500 years ago. <br><br>This application is intended to provide researchers and the public a site to do some digging of their own. </p>
                             </div>
                         </div>
                         <div class="margin-top margin-xlarge">
-                            <a asp-controller="Home" asp-action="Summary" class="button-primary w-button">Explore The Data</a>
+                            <a asp-page="/SummaryTable" class="button-primary w-button">Explore The Data</a>
                         </div>
                     </div>
                 </div>
@@ -38,11 +38,11 @@
                                 <div class="subheading">Filter And Generate Insights WITH</div>
                                 <h2 class="heading-2">Burial Summary</h2>
                             </div>
-                            <p class="paragraph-2">This is a great resource for preliminary data analysis. Filter our records by textile, burial depth, age at death and more. See what insights you can generate with this responsive and user-friendly database.</p>
-                            <a asp-controller="Home" asp-action="Summary" class="button-text w-button">Start Exploring</a>
+                            <p class="paragraph-2">A public database displaying all of the info we have collected from mummies and burial remains. Filter our records by textile, burial depth, age at death, sex, and more. See what insights you can generate with this responsive and user-friendly database.</p>
+                            <a asp-page="/SummaryTable" class="button-text w-button">Start Exploring</a>
                         </div>
                         <div id="w-node-b595f70c-d8ff-9644-ff4c-9200d8bfa4cf-367a0ffb" class="divider-vertical hide-mobile-landscape"></div>
-                        <div id="w-node-cd760831-ba39-a1bd-d6db-afe6a74436b7-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data.png" loading="eager" sizes="(max-width: 479px) 100vw, (max-width: 767px) 75.8125px, 28vw" alt="" class="image-cover"></div>
+                        <div id="w-node-cd760831-ba39-a1bd-d6db-afe6a74436b7-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data.png" loading="eager" sizes="(max-width: 479px) 56.625px, (max-width: 767px) 41vw, 52vw" alt="" class="image-cover"></div>
                     </div>
                 </div>
             </div>
@@ -53,15 +53,15 @@
             <div class="container-medium">
                 <div class="padding-section-large">
                     <div class="home-info-component">
-                        <div id="w-node-a43475ca-6432-8282-1022-855bf0c4bc16-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data2.png" loading="eager" sizes="(max-width: 479px) 100vw, (max-width: 767px) 84.75px, 29vw" alt="" class="image-cover"></div>
+                        <div id="w-node-a43475ca-6432-8282-1022-855bf0c4bc16-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data2.png" loading="eager" sizes="(max-width: 479px) 39.328125px, (max-width: 767px) 24vw, 25vw" alt="" class="image-cover"></div>
                         <div id="w-node-_488003d8-54d7-98bd-a59d-1310ac519f2e-367a0ffb" class="divider-vertical hide-mobile-landscape"></div>
                         <div id="w-node-d50255eb-41d7-cddd-ba50-1fd46a5bf027-367a0ffb" class="home-info-content-wrapper">
                             <div class="heading-wrapper">
                                 <div class="subheading">Predictive Modeling And</div>
                                 <h2 class="heading-2">Data Analytics</h2>
                             </div>
-                            <p class="paragraph-2">Discover the power of predictive analytics while using our web-based application. Allow our machine learning model to predict unknown variables about recovered artifacts or mummies in real time using a random forest algorithm.</p>
-                            <a href="#" class="button-text w-button">Run Model</a>
+                            <p class="paragraph-2">Discover the power of predictive analytics while using our web-based application. Allow our machine learning models to predict unknown variables about recovered artifacts or mummies in real time using a random forest algorithm.</p>
+                            <a asp-page="/SexPrediction" class="button-text w-button">Run Model</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
         </div>
     </section>
     <div class="section-home-full-image wf-section">
-        <div class="home-full-image-overlay"></div><img src="~/img/edit2.jpg" loading="eager" sizes="95vw" alt="" class="home-full-image">
+        <div class="home-full-image-overlay"></div><img src="~/img/edit2.jpg" loading="lazy" sizes="95vw" alt="" class="home-full-image">
     </div>
     <div class="section-home-users wf-section">
         <div class="padding-global">
@@ -82,10 +82,10 @@
                                 <h2 class="heading-2">Create an Account</h2>
                             </div>
                             <p class="paragraph-2">Access the full range of our services by creating a free account. Use your account to contribute to our ever-growing database. Become authorized to make changes and spur innovation.</p>
-                            <a asp-page="/Identity/Account/Register" class="button-text w-button">Register Today</a>
+                            <a asp-area="Identity" asp-page="/Account/Register" class="button-text w-button">Register Today</a>
                         </div>
                         <div id="w-node-c443257e-9d11-b08e-c3cb-e177fc48c0ce-367a0ffb" class="divider-vertical hide-mobile-landscape"></div>
-                        <div id="w-node-c443257e-9d11-b08e-c3cb-e177fc48c0cf-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data4.png" loading="eager" sizes="(max-width: 479px) 100vw, (max-width: 767px) 113.3125px, 29vw" alt="" class="image-cover"></div>
+                        <div id="w-node-c443257e-9d11-b08e-c3cb-e177fc48c0cf-367a0ffb" class="home-info-page-image-wrapper"><img src="~/img/data4.png" loading="eager" sizes="(max-width: 479px) 94.125px, (max-width: 767px) 46vw, 56vw" alt="" class="image-cover"></div>
                     </div>
                 </div>
             </div>
