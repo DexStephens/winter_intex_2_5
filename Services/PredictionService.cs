@@ -45,7 +45,84 @@ namespace winter_intex_2_5.Services
                     sexData.PreservationSkeletalizedkullOnly = 0;
                     sexData.PreservationWrapped = 1;
                     break;
-                case "c":
+                case "bones":
+                    sexData.PreservationBones = 1;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "bonesbody":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 1;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "fair":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 1;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "scatteredbones":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 1;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "skeletalized":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 1;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "skullonly":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 1;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                case "":
+                    sexData.PreservationBones = 0;
+                    sexData.PreservationBonesodyOnly = 0;
+                    sexData.PreservationFair = 0;
+                    sexData.PreservationHeadlessSkeleton = 0;
+                    sexData.PreservationPoor = 0;
+                    sexData.PreservationScatteredBonesWithSkull = 0;
+                    sexData.PreservationSkeletalized = 0;
+                    sexData.PreservationSkeletalizedkullOnly = 0;
+                    sexData.PreservationWrapped = 0;
+                    break;
+                default :
                     sexData.PreservationBones = 0;
                     sexData.PreservationBonesodyOnly = 0;
                     sexData.PreservationFair = 0;

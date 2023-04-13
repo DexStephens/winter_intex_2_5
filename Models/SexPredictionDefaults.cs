@@ -13,9 +13,15 @@ namespace winter_intex_2_5.Models
         };
         public List<SelectListItem> PreservationItems = new List<SelectListItem>
         {
+            new SelectListItem { Value = "", Text = "" },
             new SelectListItem { Value = "poor", Text = "poor", Selected = true },
             new SelectListItem { Value = "wrapped", Text = "wrapped" },
-            new SelectListItem { Value = "c", Text = "Child" }
+            new SelectListItem { Value = "bones", Text = "bones" },
+            new SelectListItem { Value = "bonesbody", Text = "bones body only" },
+            new SelectListItem { Value = "fair", Text = "fair" },
+            new SelectListItem { Value = "scatteredbones", Text = "scattered bones with skull" },
+            new SelectListItem { Value = "skeletalized", Text = "skeletalized" },
+            new SelectListItem { Value = "skullonly", Text = "skull only" }
         };
         public List<SelectListItem> EastWestItems = new List<SelectListItem>
         {

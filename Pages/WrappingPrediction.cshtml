@@ -127,12 +127,18 @@
                 <button type="submit" class="btn btn-primary">Predict Wrapping</button>
             </div>
         </form>
+        <br />
         @if(Model.WrappingPrediction != null)
         {
-            <div class="alert alert-success">
-                <h1>Wrapping Prediction</h1>
-                <h4>@Model.WrappingPrediction.Wrapping</h4>
-            </div>
+    <div class="alert alert-success">
+        <h1>Wrapping Prediction</h1> 
+        <h4>@Model.WrappingPrediction.Wrapping</h4>
+        @if (Model.WrappingPrediction.Wrapping == "W")
+        {
+            <h4></h4>>
+        }
+
+    </div>
         }
     </main>
 </div>
