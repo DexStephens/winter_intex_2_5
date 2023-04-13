@@ -188,17 +188,20 @@
                 }
             </tbody>
         </table>
-        @for(int i = 1; i <= Model.TotalPageCount;i++)
-        {
-            @if(i == Model.CurrentPage)
+        <div class="btn-group" role="group" aria-label="Basic example">
+            @for (int i = 1; i <= Model.TotalPageCount; i++)
             {
-                <div class="btn btn-outline-primary">@i</div>
+                @if (i == Model.CurrentPage)
+                {
+                    <div class="btn btn-outline-primary">@i</div>
+                }
+                else
+                {
+                    <a asp-page="/SummaryTable" asp-route-currentPage="@i" asp-route-filteredSummaryTableFilter="@Model.SummaryTableFilter" class="btn btn-primary">@i</a>
+                }
             }
-            else
-            {
-                <a asp-page="/SummaryTable" asp-route-currentPage="@i" asp-route-filteredSummaryTableFilter="@Model.SummaryTableFilter" class="btn btn-primary">@i</a>
-            }
-        }
+        </div>
+        
     </main>
 </div>
 <script src="~/js/summaryTable.js"></script>
