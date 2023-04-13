@@ -39,6 +39,7 @@
             </div>
             <div id="filterForm" class="filterTable">
                 <form method="post">
+                    <input type="hidden" name="currentPage" value="1" />
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="py-1">
@@ -161,9 +162,9 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model.SummaryTables != null)
+                @if (Model.CurrentSummaryTables != null)
                 {
-                    @foreach (var rowItem in Model.SummaryTables)
+                    @foreach (var rowItem in Model.CurrentSummaryTables)
                     {
                         <tr>
                             <td>@rowItem.Textilecolor</td>
@@ -187,6 +188,17 @@
                 }
             </tbody>
         </table>
+        @for(int i = 1; i <= Model.TotalPageCount;i++)
+        {
+            @if(i == Model.CurrentPage)
+            {
+                <div class="btn btn-outline-primary">@i</div>
+            }
+            else
+            {
+                <a asp-page="/SummaryTable" asp-route-currentPage="@i" asp-route-filteredSummaryTableFilter="@Model.SummaryTableFilter" class="btn btn-primary">@i</a>
+            }
+        }
     </main>
 </div>
 <script src="~/js/summaryTable.js"></script>
