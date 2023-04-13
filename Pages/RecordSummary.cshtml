@@ -1,4 +1,11 @@
 ﻿@page
 @model winter_intex_2_5.Pages.RecordSummaryModel
-@{
+
+<h1>This is the page that has the summary of individual mummy records</h1>
+
+@foreach(var photo in Model.Photos)
+{
+    <img src="@photo.Url" height="200" width="200"/>
 }
+
+@*need field notes, measurements, and other valuable information*@

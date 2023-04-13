@@ -10,6 +10,7 @@ namespace winter_intex_2_5.Models
     public partial class SummaryTable
     {
         public long? Id { get; set; }
+        public long? Textileid { get; set; }
         public string Squarenorthsouth { get; set; }
         public string Headdirection { get; set; }
         public string Sex { get; set; }

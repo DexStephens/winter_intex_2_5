@@ -13,13 +13,13 @@ namespace winter_intex_2_5.Models
         public IEnumerable<string> BurialIDs { get; set; }
         public bool Male { get; set; }
         public bool Female { get; set; }
-        public int? MinDepth { get; set; }
-        public int? MaxDepth { get; set;}
-        public int? MinStature { get; set; }
-        public int? MaxStature { get;set; }
+        public decimal? MinDepth { get; set; }
+        public decimal? MaxDepth { get; set;}
+        public decimal? MinStature { get; set; }
+        public decimal? MaxStature { get;set; }
         public SummaryTableFilter() { }
 
-        public SummaryTableFilter(IEnumerable<string>? hairColors, IEnumerable<string>? structures, IEnumerable<string>? deathAges, IEnumerable<string>? headDirections, IEnumerable<string>? textileFunctions, IEnumerable<string>? textileColors, IEnumerable<string> burialIDs, bool male, bool female, int? minDepth, int? maxDepth, int? minStature, int? maxStature)
+        public SummaryTableFilter(IEnumerable<string>? hairColors, IEnumerable<string>? structures, IEnumerable<string>? deathAges, IEnumerable<string>? headDirections, IEnumerable<string>? textileFunctions, IEnumerable<string>? textileColors, IEnumerable<string> burialIDs, bool male, bool female, decimal? minDepth, decimal? maxDepth, decimal? minStature, decimal? maxStature)
         {
             HairColors = hairColors;
             Structures = structures;
