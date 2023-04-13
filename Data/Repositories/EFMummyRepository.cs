@@ -33,6 +33,7 @@ namespace winter_intex_2_5.Data.Repositories
         public IQueryable<BurialmainBodyanalysischart> BurialmainBodyanalysischarts => Context.BurialmainBodyanalysischart;
 
         public IQueryable<BurialmainCranium> BurialmainCrania => Context.BurialmainCranium;
+        public IQueryable<BurialmainTextile> BurialmainTextiles => Context.BurialmainTextile;
 
         public IQueryable<C14> C14s => Context.C14;
 
@@ -61,6 +62,7 @@ namespace winter_intex_2_5.Data.Repositories
         public IQueryable<Structure> Structures => Context.Structure;
 
         public IQueryable<StructureTextile> StructuresTextiles => Context.StructureTextile;
+        public IQueryable<SummaryTable> SummaryTables => Context.SummaryTable;
 
         public IQueryable<Teammember> Teammembers => Context.Teammember;
 

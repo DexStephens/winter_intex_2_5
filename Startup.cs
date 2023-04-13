@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using winter_intex_2_5.Data;
 using winter_intex_2_5.Data.Repositories;
@@ -78,6 +78,7 @@ namespace winter_intex_2_5
                     options.ClientId = Configuration["GoogleClientId"];
                     options.ClientSecret = Configuration["GoogleClientSecret"];
                 });
+            }
 
 
                 services.Configure<IdentityOptions>(options =>
@@ -88,7 +89,8 @@ namespace winter_intex_2_5
                     options.Password.RequireLowercase = true;
                     options.Password.RequiredLength = 10;
                 });
-            }
+
+            services.AddRazorPages();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -45,7 +45,7 @@ namespace winter_intex_2_5.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Email")]
+            [EmailAddress]
             public string Email { get; set; }
 
             [Required]

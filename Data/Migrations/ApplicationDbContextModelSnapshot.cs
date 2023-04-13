@@ -72,7 +72,7 @@ namespace winter_intex_2_5.Data.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +96,7 @@ namespace winter_intex_2_5.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -118,7 +118,7 @@ namespace winter_intex_2_5.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("text");
@@ -133,7 +133,7 @@ namespace winter_intex_2_5.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("text");
@@ -1357,6 +1357,211 @@ namespace winter_intex_2_5.Data.Migrations
                     b.ToTable("structure_textile");
                 });
 
+            modelBuilder.Entity("winter_intex_2_5.Models.SummaryTable", b =>
+                {
+                    b.Property<string>("Adultsubadult")
+                        .HasColumnName("adultsubadult")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Ageatdeath")
+                        .HasColumnName("ageatdeath")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Area")
+                        .HasColumnName("area")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Burialid")
+                        .HasColumnName("burialid")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Burialmaterials")
+                        .HasColumnName("burialmaterials")
+                        .HasColumnType("character varying(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("Burialnumber")
+                        .HasColumnName("burialnumber")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Clusternumber")
+                        .HasColumnName("clusternumber")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Dataexpertinitials")
+                        .HasColumnName("dataexpertinitials")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime?>("Dateofexcavation")
+                        .HasColumnName("dateofexcavation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Depth")
+                        .HasColumnName("depth")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Eastwest")
+                        .HasColumnName("eastwest")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("Estimatestature")
+                        .HasColumnName("estimatestature")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Excavationrecorder")
+                        .HasColumnName("excavationrecorder")
+                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Facebundles")
+                        .HasColumnName("facebundles")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Fieldbookexcavationyear")
+                        .HasColumnName("fieldbookexcavationyear")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Fieldbookpage")
+                        .HasColumnName("fieldbookpage")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Goods")
+                        .HasColumnName("goods")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Hair")
+                        .HasColumnName("hair")
+                        .HasColumnType("character varying(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("Haircolor")
+                        .HasColumnName("haircolor")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Headdirection")
+                        .HasColumnName("headdirection")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<long?>("Id")
+                        .HasColumnName("id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Length")
+                        .HasColumnName("length")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Locale")
+                        .HasColumnName("locale")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Northsouth")
+                        .HasColumnName("northsouth")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Photos")
+                        .HasColumnName("photos")
+                        .HasColumnType("character varying(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("Preservation")
+                        .HasColumnName("preservation")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Samplescollected")
+                        .HasColumnName("samplescollected")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Sex")
+                        .HasColumnName("sex")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Shaftnumber")
+                        .HasColumnName("shaftnumber")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Southtofeet")
+                        .HasColumnName("southtofeet")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Southtohead")
+                        .HasColumnName("southtohead")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Squareeastwest")
+                        .HasColumnName("squareeastwest")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Squarenorthsouth")
+                        .HasColumnName("squarenorthsouth")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Structure")
+                        .HasColumnName("structure")
+                        .HasColumnType("character varying(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Text")
+                        .HasColumnName("text")
+                        .HasColumnType("character varying(2000)")
+                        .HasMaxLength(2000);
+
+                    b.Property<string>("Textilecolor")
+                        .HasColumnName("textilecolor")
+                        .HasColumnType("character varying(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Textiledescription")
+                        .HasColumnName("textiledescription")
+                        .HasColumnType("character varying");
+
+                    b.Property<string>("Textilefunction")
+                        .HasColumnName("textilefunction")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Westtofeet")
+                        .HasColumnName("westtofeet")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Westtohead")
+                        .HasColumnName("westtohead")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Wrapping")
+                        .HasColumnName("wrapping")
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.ToTable("SummaryTable");
+                });
+
             modelBuilder.Entity("winter_intex_2_5.Models.Teammember", b =>
                 {
                     b.Property<long>("Id")
@@ -1546,7 +1751,7 @@ namespace winter_intex_2_5.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("winter_intex_2_5.Models.ApplicationUser", null)
                         .WithMany()
@@ -1555,7 +1760,7 @@ namespace winter_intex_2_5.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("winter_intex_2_5.Models.ApplicationUser", null)
                         .WithMany()
@@ -1564,7 +1769,7 @@ namespace winter_intex_2_5.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
@@ -1579,7 +1784,7 @@ namespace winter_intex_2_5.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("winter_intex_2_5.Models.ApplicationUser", null)
                         .WithMany()

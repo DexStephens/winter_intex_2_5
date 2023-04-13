@@ -1,0 +1,192 @@
+﻿@page
+@model winter_intex_2_5.Pages.SummaryTableModel
+
+<style>
+    .arrow:hover {
+        cursor: pointer;
+    }
+
+    .filterTable {
+        border-radius: 10px; /* Adjust the value to change the amount of rounding */
+        background-color: #f2f2f2; /* Light grey background color */
+        border: 2px solid #d9d9d9; /* Slightly darker grey border */
+        padding: 10px; /* Optional: Add some padding inside the div */
+    }
+    #filterForm {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    tr:hover {
+        background-color: lightgrey;
+    }
+
+</style>
+<div class="container">
+    <main class="main-wrapper">
+        <div class="row">
+            <div class="col-md-9 d-flex align-items-center" id="filterHandler">
+                <h3>Filtering Table</h3>
+                <div id="downArrow" style="height: 30px; width: 30px; display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21l-8-8h16z" />
+                    </svg>
+                </div>
+                <div id="upArrow" style="height: 30px; width: 30px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3l8 8H4z" />
+                    </svg>
+                </div>
+            </div>
+            <div id="filterForm" class="filterTable">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Hair Color:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.HairColors" asp-items="Model.SummaryTableDefaults.HairColors.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedHairColors.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedHairColors[x]: x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Structure:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.Structures" asp-items="Model.SummaryTableDefaults.Structures.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Age at Death:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.DeathAges" asp-items="Model.SummaryTableDefaults.DeathAges.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedDeathAges.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedDeathAges[x] : x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Head Direction:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.HeadDirections" asp-items="Model.SummaryTableDefaults.HeadDirections.Select(x => new SelectListItem{ Text = Model.SummaryTableDefaults.RecordedHeadDirections.ContainsKey(x) ? Model.SummaryTableDefaults.RecordedHeadDirections[x] : x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Textile Function:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.TextileFunctions" asp-items="Model.SummaryTableDefaults.TextileFunctions.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Textile Color:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.TextileColors" asp-items="Model.SummaryTableDefaults.TextileColors.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="py-1">
+                                <h4>Burial ID:</h4>
+                            </div>
+                            <div class="py-1">
+                                <select asp-for="SummaryTableFilter.BurialIDs" asp-items="Model.SummaryTableDefaults.BurialIDs.Select(x => new SelectListItem{ Text = x, Value = x})" multiple class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sex">Sex:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" asp-for="SummaryTableFilter.Male" />
+                                    <label class="form-check-label" asp-for="SummaryTableFilter.Male">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" asp-for="SummaryTableFilter.Female" />
+                                    <label class="form-check-label" asp-for="SummaryTableFilter.Female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="minimum-depth">Burial Depth:</label>
+                                <div class="form-group">
+                                    <label asp-for="SummaryTableFilter.MinDepth">Minimum Depth:</label>
+                                    <input asp-for="SummaryTableFilter.MinDepth" id="minimum-depth" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="SummaryTableFilter.MaxDepth">Maximum Depth:</label>
+                                    <input asp-for="SummaryTableFilter.MaxDepth" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="estimate-stature">Estimate Stature:</label>
+                                <div class="form-group">
+                                    <label asp-for="SummaryTableFilter.MinStature">Minimum Stature:</label>
+                                    <input asp-for="SummaryTableFilter.MinStature" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="SummaryTableFilter.MaxStature">Maximum Stature:</label>
+                                    <input asp-for="SummaryTableFilter.MaxStature" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit">Filter Burial Records</button>
+                </form>
+                <form method="post" asp-page-handler="Reset">
+                    <button class="btn btn-outline-warning" type="submit">Reset Filters</button>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table-primary">
+                    <th>Textile color</th>
+                    <th>Textile structure</th>
+                    <th>Sex</th>
+                    <th>Burial Depth</th>
+                    <th>Estimate Stature</th>
+                    <th>Age at Death</th>
+                    <th>Head Direction</th>
+                    <th>Burial ID (SquareNorthSouth, NorthSouth, SquareEastWest, EastWest, Area, Burial Number)</th>
+                    <th>Textile Function</th>
+                    <th>Hair Color</th>
+                    <th>View Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.SummaryTables != null)
+                {
+                    @foreach (var rowItem in Model.SummaryTables)
+                    {
+                        <tr>
+                            <td>@rowItem.Textilecolor</td>
+                            <td>@rowItem.Structure</td>
+                            <td>@rowItem.Sex</td>
+                            <td>@rowItem.Depth</td>
+                            <td>@rowItem.Estimatestature</td>
+                            <td>@rowItem.Ageatdeath</td>
+                            <td>@rowItem.Headdirection</td>
+                            <td>@rowItem.Burialid</td>
+                            <td>@rowItem.Textilefunction</td>
+                            <td>@rowItem.Haircolor</td>
+                            <td>
+                                <form method="post" asp-page="/RecordSummary">
+                                    <input type="hidden" name="burialId" value="@rowItem.Id" />
+                                    <button type="submit" class="btn btn-primary">Full Summary</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </main>
+</div>
+<script src="~/js/summaryTable.js"></script>

@@ -50,6 +50,7 @@ namespace winter_intex_2_5.Models
         public virtual DbSet<Photoform> Photoform { get; set; }
         public virtual DbSet<Structure> Structure { get; set; }
         public virtual DbSet<StructureTextile> StructureTextile { get; set; }
+        public virtual DbSet<SummaryTable> SummaryTable { get; set; }
         public virtual DbSet<Teammember> Teammember { get; set; }
         public virtual DbSet<Textile> Textile { get; set; }
         public virtual DbSet<Textilefunction> Textilefunction { get; set; }
@@ -69,6 +70,167 @@ namespace winter_intex_2_5.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<SummaryTable>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Adultsubadult)
+                    .HasColumnName("adultsubadult")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Ageatdeath)
+                    .HasColumnName("ageatdeath")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Area)
+                    .HasColumnName("area")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Burialid).HasColumnName("burialid");
+
+                entity.Property(e => e.Burialmaterials)
+                    .HasColumnName("burialmaterials")
+                    .HasMaxLength(5);
+
+                entity.Property(e => e.Burialnumber)
+                    .HasColumnName("burialnumber")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Clusternumber)
+                    .HasColumnName("clusternumber")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Dataexpertinitials)
+                    .HasColumnName("dataexpertinitials")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Dateofexcavation).HasColumnName("dateofexcavation");
+
+                entity.Property(e => e.Depth)
+                    .HasColumnName("depth")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Eastwest)
+                    .HasColumnName("eastwest")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Estimatestature).HasColumnName("estimatestature");
+
+                entity.Property(e => e.Excavationrecorder)
+                    .HasColumnName("excavationrecorder")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Facebundles)
+                    .HasColumnName("facebundles")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Fieldbookexcavationyear)
+                    .HasColumnName("fieldbookexcavationyear")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Fieldbookpage)
+                    .HasColumnName("fieldbookpage")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Goods)
+                    .HasColumnName("goods")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Hair)
+                    .HasColumnName("hair")
+                    .HasMaxLength(5);
+
+                entity.Property(e => e.Haircolor)
+                    .HasColumnName("haircolor")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Headdirection)
+                    .HasColumnName("headdirection")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Length)
+                    .HasColumnName("length")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Locale)
+                    .HasColumnName("locale")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Northsouth)
+                    .HasColumnName("northsouth")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Photos)
+                    .HasColumnName("photos")
+                    .HasMaxLength(5);
+
+                entity.Property(e => e.Preservation)
+                    .HasColumnName("preservation")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Samplescollected)
+                    .HasColumnName("samplescollected")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Sex)
+                    .HasColumnName("sex")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Shaftnumber)
+                    .HasColumnName("shaftnumber")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Southtofeet)
+                    .HasColumnName("southtofeet")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Southtohead)
+                    .HasColumnName("southtohead")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Squareeastwest)
+                    .HasColumnName("squareeastwest")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Squarenorthsouth)
+                    .HasColumnName("squarenorthsouth")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Structure)
+                    .HasColumnName("structure")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Text)
+                    .HasColumnName("text")
+                    .HasMaxLength(2000);
+
+                entity.Property(e => e.Textilecolor)
+                    .HasColumnName("textilecolor")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Textiledescription)
+                    .HasColumnName("textiledescription")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.Textilefunction)
+                    .HasColumnName("textilefunction")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Westtofeet)
+                    .HasColumnName("westtofeet")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Westtohead)
+                    .HasColumnName("westtohead")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Wrapping)
+                    .HasColumnName("wrapping")
+                    .HasMaxLength(200);
+            });
 
             modelBuilder.Entity<Analysis>(entity =>
             {

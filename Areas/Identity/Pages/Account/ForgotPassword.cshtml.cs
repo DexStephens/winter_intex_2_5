@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using winter_intex_2_5.Models;
-
 namespace winter_intex_2_5.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
