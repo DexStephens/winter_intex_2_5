@@ -22,38 +22,42 @@
 </head>
 <body>
     <div class="page-wrapper">
-        <nav class="navbar-logo-center wf-section">
+        <nav class="navbar-logo-center">
             <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container shadow-three w-nav">
                 <div class="container">
                     <div class="navbar-wrapper-three">
-                        <a href="#" class="navbar-brand-three w-nav-brand"><img src="~/img/giza.png" loading="lazy" width="121" alt="" class="image"></a>
-                        <nav role="navigation" class="nav-menu-wrapper-three w-nav-menu">
+                        <a href="#" class="navbar-brand-three nav-brand"><img src="~/img/giza.png" loading="lazy" width="121" alt="" class="image"></a>
+                        <nav role="navigation" class="nav-menu-wrapper-three nav-menu">
                             <div class="nav-menu-three">
-                                <ul role="list" class="nav-menu-block w-list-unstyled">
+                                <ul role="list" class="nav-menu-block list-unstyled">
                                     <li>
                                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
                                     <li>
                                         <a class="nav-link" asp-page="/SummaryTable">Burial Summary</a>
                                     </li>
-                                    <li>
-                                        <div data-hover="false" data-delay="0" class="nav-dropdown w-dropdown">
-                                            <div class="nav-dropdown-toggle w-dropdown-toggle">
-                                                <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
-                                                <div>Data Analytics</div>
+                                    <li class="nav-item dropdown">
+                                        <div data-hover="false" data-delay="0" class="nav-dropdown dropdown">
+                                            <div class="nav-dropdown-toggle">
+                                                <a class="nav-dropdown-icon dropdown-toggle">
+                                                    Data Analytics
+                                                </a>
                                             </div>
-                                            <nav class="nav-dropdown-list shadow-three mobile-shadow-hide w-dropdown-list">
-                                                <a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Predictions">Predictive Model</a>
-                                                <a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Analysis">Visualizations</a>
-                                            </nav>
+                                            <ul class="list-unstyled nav-dropdown-list shadow-three mobile-shadow-hide dropdown-list">
+                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Predictions">Predict Sex</a></li>
+                                                @*asp-page=“/SexPrediction”*@
+                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="">Predict Wrapping Style</a></li>
+                                                @*asp-page=“/WrappingPrediction”*@
+                                                <li><a class="nav-dropdown-link w-dropdown-link" asp-area="" asp-controller="Home" asp-action="Analysis">Data Visualizations</a></li>
+                                            </ul>
                                         </div>
                                     </li>
                                 </ul>
                                 <partial name="_LoginPartial" />
                             </div>
                         </nav>
-                        <div class="menu-button w-nav-button">
-                            <div class="w-icon-nav-menu"></div>
+                        <div class="menu-button nav-button">
+                            <div class="icon-nav-menu"></div>
                         </div>
                     </div>
                 </div>
@@ -71,10 +75,16 @@
                     <a href="#" class="footer-brand w-inline-block"><img src="~/img/giza.png" loading="lazy" alt=""></a>
                     <div class="footer-content">
                         <div id="w-node-_4d026814-4e0a-e576-cb98-7b971368da6a-1368da64" class="footer-block">
+                            <div class="title-small">Data</div>
+                            <a asp-controller="Home" asp-action="Summary" class="footer-link">View Burials</a>
+                            <a asp-controller="Home" asp-action="Predictions" class="footer-link">Predict Sex</a>
+                            <a asp-controller="Home" asp-action="Analysis" class="footer-link">Data Visualizations</a>
+                        </div>
+                        <div id="w-node-_4d026814-4e0a-e576-cb98-7b971368da6a-1368da64" class="footer-block">
                             <div class="title-small">Fag el-Gamous</div>
                             <a href="https://egypt.byu.edu/p/" target="_blank" class="footer-link">Learn More</a>
-                        </div>
-                        <div id="w-node-_4d026814-4e0a-e576-cb98-7b971368da73-1368da64" class="footer-block">
+                            <br />
+                            <br />
                             <div class="title-small">Meet The Team</div>
                             <a href="https://egypt.byu.edu/p/Team" target="_blank" class="footer-link">Staff &amp; Faculty</a>
                         </div>
