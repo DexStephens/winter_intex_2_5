@@ -1,7 +1,6 @@
 ﻿using Microsoft.ML.OnnxRuntime.Tensors;
 using System;
 using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace winter_intex_2_5.Models
 {
@@ -18,36 +17,47 @@ namespace winter_intex_2_5.Models
         public float FemurHeadDiameter { get; set; }
         public float FemurLength { get; set; }
         public float ClusterBool { get; set; }
+        public bool ClusterCheckbox { get; set; }
         public float SquareNorthSouth { get; set; }
         public float BurialNumber { get; set; }
         public float ToothEruption_Bool { get; set; }
+        public bool ToothEruptionCheckbox { get; set; }
         public float EastWest_W { get; set; }
+        public string EastWestDropdown { get; set; }
         public float Area_NW { get; set; }
         public float Area_SE { get; set; }
         public float Area_SW { get; set; }
+        public string AreaDropdown { get; set; }
         public float HeadDirection_E { get; set; }
+        public string HeadDirectionDropdown { get; set; }
         public float AdultSubadult_A { get; set; }
         public float AdultSubadult_C { get; set; }
+        public string SubAdultDropdown { get; set; }
         public float SupraorbitalRidges_Unknown { get; set; }
         public float SupraorbitalRidges_Heavy { get; set; }
         public float SupraorbitalRidges_Light { get; set; }
         public float SupraorbitalRidges_Medium { get; set; }
+        public string SupraOrbitalDropdown { get; set; }
         public float OrbitEdge_Unknown { get; set; }
         public float OrbitEdge_Blunt { get; set; }
         public float OrbitEdge_Medium { get; set; }
         public float OrbitEdge_Sharp { get; set; }
+        public string OrbitEdgeItems { get; set; }
         public float Gonion_Flat { get; set; }
         public float Gonion_Medium { get; set; }
         public float Gonion_Pointed { get; set; }
+        public string GonionDropdown { get; set; }
         public float ZygomaticCrest_Longer { get; set; }
         public float ZygomaticCrest_Medium { get; set; }
         public float ZygomaticCrest_Shorter { get; set; }
+        public string ZygomaticDropdown { get; set; }
         public float ToothAttrition_I { get; set; }
         public float ToothAttrition_II { get; set; }
         public float ToothAttrition_III { get; set; }
         public float ToothAttrition_IV { get; set; }
         public float ToothAttrition_NoTeeth { get; set; }
         public float ToothAttrition_V { get; set; }
+        public string ToothAttritionDropdown { get; set; }
         public float ToothEruptionAgeEstimate_17_25Years { get; set; }
         public float ToothEruptionAgeEstimate_25_35Years { get; set; }
         public float ToothEruptionAgeEstimate_35_Years { get; set; }
@@ -55,14 +65,17 @@ namespace winter_intex_2_5.Models
         public float ToothEruptionAgeEstimate_8_16Years { get; set; }
         public float ToothEruptionAgeEstimate_None { get; set; }
         public float ToothEruptionAgeEstimate_Other { get; set; }
+        public string ToothEruptionAgeDropdown { get; set; }
         public float SciaticNotch_Medium { get; set; }
         public float SciaticNotch_Narrow { get; set; }
         public float SciaticNotch_Wide { get; set; }
+        public string SciaticNotchDropdown { get; set; }
         public float HairColorGroup_Black { get; set; }
         public float HairColorGroup_Blond { get; set; }
         public float HairColorGroup_Brown { get; set; }
         public float HairColorGroup_None { get; set; }
         public float HairColorGroup_Red { get; set; }
+        public string HairColorDropdown { get; set; }
         public Tensor<float> AsTensor()
         {
             float[] data = new float[]

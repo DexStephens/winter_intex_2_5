@@ -4,12 +4,12 @@ namespace winter_intex_2_5.Services
 {
     public class InferenceSessions
     {
-        public InferenceSession PredictSexSession { get; set; }
+        public InferenceSession SexSession { get; set; }
         public InferenceSession WrappingSession { get; set; }
 
-        public InferenceSessions(InferenceSession predictSexSession, InferenceSession wrappingSession)
+        public InferenceSessions(InferenceSession sexSession, InferenceSession wrappingSession)
         {
-            PredictSexSession = predictSexSession;
+            SexSession = sexSession;
             WrappingSession = wrappingSession;
         }
     }

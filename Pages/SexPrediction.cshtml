@@ -1,0 +1,102 @@
+﻿@page
+@model winter_intex_2_5.Pages.SexPredictionModel
+
+
+<div class="container">
+    <main class="main-wrapper">
+        <h1>Mummy Sex Predictions</h1>
+
+        <form method="post">
+        <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="burialNumber">Burial Number:</label>
+                        <input asp-for="SexData.BurialNumber" class="form-control" id="burialNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label for="depth">Depth:</label>
+                        <input asp-for="SexData.Depth" class="form-control" id="depth">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="length">Length:</label>
+                        <input asp-for="SexData.Length" class="form-control" id="length">
+                    </div>
+                    <div class="form-group">
+                        <label for="southToFeet">South to Feet:</label>
+                        <input asp-for="SexData.SouthToFeet" class="form-control" id="southToFeet" >
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="southToHead">South to Head:</label>
+                        <input asp-for="SexData.SouthToHead" class="form-control" id="southToHead">
+                    </div>
+                    <div class="form-group">
+                        <label for="squareEastWest">Square East West:</label>
+                        <input asp-for="SexData.SquareEastWest" class="form-control" id="squareEastWest" >
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="squareNorthSouth">Square North South:</label>
+                        <input asp-for="SexData.SquareNorthSouth" class="form-control" id="squareNorthSouth">
+                    </div>
+                    <div class="form-group">
+                        <label for="westToFeet">West to Feet:</label>
+                        <input asp-for="SexData.WestToFeet" class="form-control" id="westToFeet">
+                    </div>
+                    <div class="form-group">
+                        <label for="westToHead">West to Head:</label>
+                        <input asp-for="SexData.WestToHead" class="form-control" id="westToHead">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="practice10">Adult sub Adult</label>
+                        <select asp-for="SexData.SubAdultDropdown" asp-items="Model.SexPredictionDefaults.SubAdultItems"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="practice13">Area</label>
+                        <select asp-for="SexData.AreaDropdown" asp-items="Model.SexPredictionDefaults.AreaItems"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="practice23">East/West</label>
+                        <select asp-for="SexData.EastWestDropdown" asp-items="Model.SexPredictionDefaults.EastWestItems"></select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="practice10">Preservation</label>
+                        <select asp-for="SexData.PreservationDropdown" asp-items="Model.SexPredictionDefaults.PreservationItems"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="practice13">Wrapping</label>
+                        <select asp-for="SexData.WrappingDropdown" asp-items="Model.SexPredictionDefaults.WrappingItems" class="form-control"></select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Predict Sex</button>
+            
+        </div>
+            @if (Model.SexPrediction != null)
+            {
+                <div class="alert alert-success">
+                    <h1>Sex Prediction</h1>
+                    @if(Model.SexPrediction.Sex == 1)
+                    {
+                        <h4>Male</h4>
+                    }
+                    else
+                    {
+                        <h4>Female</h4>
+                    }
+                </div>
+            }
+        </form>
+    </main>
+</div>
+
+
+
+
