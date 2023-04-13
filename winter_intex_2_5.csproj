@@ -32,7 +32,13 @@
   <ItemGroup>
     <None Include=".ebextensions\securelistener-alb.config" />
     <None Include=".ebextensions\alb-http-to-https-redirection-full.config" />
-    <None Include="wwwroot\onnx\predict_sex.onnx" />
-    <None Include="wwwroot\onnx\wrapping_model2.onnx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\onnx\predict_sex.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\onnx\wrapping_model2.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
