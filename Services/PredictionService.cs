@@ -243,7 +243,7 @@ namespace winter_intex_2_5.Services
                     wrappingData.HairColorGroup_Red = 0;
                     break;
             }
-            switch (wrappingData.SciaticNotchDropdown)
+           switch (wrappingData.SciaticNotchDropdown)
             {
                 case "narrow":
                     wrappingData.SciaticNotch_Narrow = 1;
@@ -259,6 +259,11 @@ namespace winter_intex_2_5.Services
                     wrappingData.SciaticNotch_Narrow = 0;
                     wrappingData.SciaticNotch_Medium = 0;
                     wrappingData.SciaticNotch_Wide = 1;
+                    break;
+                case "":
+                    wrappingData.SciaticNotch_Narrow = 0;
+                    wrappingData.SciaticNotch_Medium = 0;
+                    wrappingData.SciaticNotch_Wide = 0;
                     break;
                 default:
                     wrappingData.SciaticNotch_Narrow = 0;
@@ -391,6 +396,14 @@ namespace winter_intex_2_5.Services
                     wrappingData.ToothAttrition_IV = 0;
                     wrappingData.ToothAttrition_V = 1;
                     break;
+                case "":
+                    wrappingData.ToothAttrition_NoTeeth = 0;
+                    wrappingData.ToothAttrition_I = 0;
+                    wrappingData.ToothAttrition_II = 0;
+                    wrappingData.ToothAttrition_III = 0;
+                    wrappingData.ToothAttrition_IV = 0;
+                    wrappingData.ToothAttrition_V = 0;
+                    break;
                 default:
                     wrappingData.ToothAttrition_NoTeeth = 0;
                     wrappingData.ToothAttrition_I = 0;
@@ -417,6 +430,11 @@ namespace winter_intex_2_5.Services
                     wrappingData.ZygomaticCrest_Medium = 0;
                     wrappingData.ZygomaticCrest_Longer = 1;
                     break;
+                case "" :
+                    wrappingData.ZygomaticCrest_Shorter = 0;
+                    wrappingData.ZygomaticCrest_Medium = 0;
+                    wrappingData.ZygomaticCrest_Longer = 0;
+                    break;
                 default:
                     wrappingData.ZygomaticCrest_Shorter = 0;
                     wrappingData.ZygomaticCrest_Medium = 0;
@@ -440,13 +458,18 @@ namespace winter_intex_2_5.Services
                     wrappingData.Gonion_Pointed = 0;
                     wrappingData.Gonion_Medium = 1;
                     break;
+                case "":
+                    wrappingData.Gonion_Flat = 0;
+                    wrappingData.Gonion_Pointed = 0;
+                    wrappingData.Gonion_Medium = 0;
+                    break;
                 default:
                     wrappingData.Gonion_Flat = 0;
                     wrappingData.Gonion_Pointed = 0;
                     wrappingData.Gonion_Medium = 0;
                     break;
             }
-            switch (wrappingData.OrbitEdgeItems)
+           switch (wrappingData.OrbitEdgeItems)
             {
                 case "sharp":
                     wrappingData.OrbitEdge_Sharp = 1;
@@ -471,6 +494,12 @@ namespace winter_intex_2_5.Services
                     wrappingData.OrbitEdge_Blunt = 0;
                     wrappingData.OrbitEdge_Medium = 0;
                     wrappingData.OrbitEdge_Unknown = 1;
+                    break;
+                case "":
+                    wrappingData.OrbitEdge_Sharp = 0;
+                    wrappingData.OrbitEdge_Blunt = 0;
+                    wrappingData.OrbitEdge_Medium = 0;
+                    wrappingData.OrbitEdge_Unknown = 0;
                     break;
                 default:
                     wrappingData.OrbitEdge_Sharp = 0;
@@ -504,6 +533,12 @@ namespace winter_intex_2_5.Services
                     wrappingData.SupraorbitalRidges_Light = 0;
                     wrappingData.SupraorbitalRidges_Medium = 0;
                     wrappingData.SupraorbitalRidges_Unknown = 1;
+                    break;
+                case "":
+                    wrappingData.SupraorbitalRidges_Heavy = 0;
+                    wrappingData.SupraorbitalRidges_Light = 0;
+                    wrappingData.SupraorbitalRidges_Medium = 0;
+                    wrappingData.SupraorbitalRidges_Unknown = 0;
                     break;
                 default:
                     wrappingData.SupraorbitalRidges_Heavy = 0;

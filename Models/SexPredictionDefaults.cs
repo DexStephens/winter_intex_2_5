@@ -13,8 +13,8 @@ namespace winter_intex_2_5.Models
         };
         public List<SelectListItem> PreservationItems = new List<SelectListItem>
         {
-            new SelectListItem { Value = "", Text = "" },
-            new SelectListItem { Value = "poor", Text = "poor", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true  },
+            new SelectListItem { Value = "poor", Text = "poor"},
             new SelectListItem { Value = "wrapped", Text = "wrapped" },
             new SelectListItem { Value = "bones", Text = "bones" },
             new SelectListItem { Value = "bonesbody", Text = "bones body only" },

@@ -20,7 +20,8 @@ namespace winter_intex_2_5.Models
         };
         public List<SelectListItem> SciaticNotchItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "narrow", Text = "narrow", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true },
+            new SelectListItem { Value = "narrow", Text = "narrow" },
             new SelectListItem { Value = "medium", Text = "medium" },
             new SelectListItem { Value = "wide", Text = "wide" }
         };
@@ -37,35 +38,40 @@ namespace winter_intex_2_5.Models
         };
         public List<SelectListItem> ToothAttritionItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "noTeeth", Text = "No Teeth", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true },
+            new SelectListItem { Value = "noTeeth", Text = "No Teeth"},
             new SelectListItem { Value = "1", Text = "I" },
             new SelectListItem { Value = "2", Text = "II" },
             new SelectListItem { Value = "3", Text = "III" },
             new SelectListItem { Value = "4", Text = "IV" },
             new SelectListItem { Value = "5", Text = "V" }
         };
-        public List<SelectListItem> ZygomaticItems = new List<SelectListItem>()
+       public List<SelectListItem> ZygomaticItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "shorter", Text = "shorter", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true},
+            new SelectListItem { Value = "shorter", Text = "shorter"},
             new SelectListItem { Value = "medium", Text = "medium" },
             new SelectListItem { Value = "longer", Text = "longer" }
         };
         public List<SelectListItem> GonionItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "flat", Text = "flat", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true },
+            new SelectListItem { Value = "flat", Text = "flat" },
             new SelectListItem { Value = "pointed", Text = "pointed" },
             new SelectListItem { Value = "medium", Text = "medium" }
         };
         public List<SelectListItem> OrbitEdgeItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "sharp", Text = "sharp", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true },
+            new SelectListItem { Value = "sharp", Text = "sharp"},
             new SelectListItem { Value = "blunt", Text = "blunt" },
             new SelectListItem { Value = "medium", Text = "medium" },
             new SelectListItem { Value = "unknown", Text = "unknown" }
         };
         public List<SelectListItem> SupraOrbitalItems = new List<SelectListItem>()
         {
-            new SelectListItem { Value = "heavy", Text = "heavy", Selected = true },
+            new SelectListItem { Value = "", Text = "", Selected = true },
+            new SelectListItem { Value = "heavy", Text = "heavy"},
             new SelectListItem { Value = "light", Text = "light" },
             new SelectListItem { Value = "medium", Text = "medium" },
             new SelectListItem { Value = "unknown", Text = "unknown" }
