@@ -104,10 +104,10 @@ namespace winter_intex_2_5
             services.AddScoped<IMummyRepository, EFMummyRepository>();
 
             //create onnx sessions
-            var sexPath = Path.Combine(_env.ContentRootPath, "Models", "predict_sex.onnx");
+            var sexPath = Path.Combine(_env.ContentRootPath, "wwwroot/onnx", "predict_sex.onnx");
             var sexSession = new InferenceSession(sexPath);
 
-            var wrappingPath = Path.Combine(_env.ContentRootPath, "Models", "predict_sex.onnx");
+            var wrappingPath = Path.Combine(_env.ContentRootPath, "wwwroot/onnx", "predict_sex.onnx");
             var wrappingSession = new InferenceSession(wrappingPath);
 
             services.AddSingleton(new InferenceSessions(sexSession, wrappingSession));
