@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -99,7 +100,17 @@ namespace winter_intex_2_5
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
             services.AddScoped<IMummyRepository, EFMummyRepository>();
+
+            //create onnx sessions
+            var sexPath = Path.Combine(_env.ContentRootPath, "wwwroot", "onnx", "predict_sex.onnx");
+            var sexSession = new InferenceSession(sexPath);
+
+            var wrappingPath = Path.Combine(_env.ContentRootPath, "wwwroot", "onnx", "wrapping_model2.onnx");
+            var wrappingSession = new InferenceSession(wrappingPath);
+
+            services.AddSingleton(new InferenceSessions(sexSession, wrappingSession));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
