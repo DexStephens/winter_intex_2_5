@@ -219,6 +219,29 @@ namespace winter_intex_2_5
                 context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 await next();
             });
+            //X-Permitted policy
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Permitted-Cross-Domain-Policies", "none");
+                await next();
+            });
+
+            //Feature Policy
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Feature-Policy", "camera 'none'; microphone 'none'");
+                await next.Invoke();
+            });
+
+            //Expect CT
+            app.Use(async (context, next) =>
+            {
+                // Add the Expect-CT header
+                context.Response.Headers.Add("Expect-CT", "enforce, max-age=30");
+
+                // Call the next middleware in the pipeline
+                await next();
+            });
 
 
             app.UseRouting();
