@@ -176,13 +176,13 @@ namespace winter_intex_2_5
             });
 
             //CSP Header
-            //app.Use(async (ctx, next) =>
-            //{
-            //    ctx.Response.Headers.Add("Content-Security-Policy",
-            //    "default-src 'self'");
-            //    await next();
-            //});
-
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy", 
+                    "default-src 'none'; font-src fonts.googleapis.com fonts.gstatic.com data:; script-src 'self' 'sha256-H4IABS2cOkW43LaKS8PJIKb4LQYW8fDGp5bMnfUrJk4='; connect-src 'self'; img-src 'self' cwadmin.byu.edu; style-src 'self' fonts.googleapis.com 'unsafe-hashes' sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE=' 'sha256-l32kuTgbhZFV7YL2q1Sv/65m8dy+QzAV1CjPDUML0hE=' 'sha256-l32kuTgbhZFV7YL2q1Sv/65m8dy+QzAV1CjPDUML0hE=' 'sha256-alQkhzRik30p4D42M4x52HUwzK1/HLrcDh9ydLkkoOI='; base-uri 'self';form-action 'self'");
+                await next();
+            });
+            
             app.UseRouting();
 
             app.UseAuthentication();
