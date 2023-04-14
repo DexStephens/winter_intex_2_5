@@ -167,6 +167,12 @@ namespace winter_intex_2_5
                 app.UseHsts();
             }
 
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=0; includeSubDomains;");
+                await next();
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy(); // GDPR cookie policy
