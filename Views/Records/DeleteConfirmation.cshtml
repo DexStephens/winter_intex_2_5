@@ -4,12 +4,16 @@
     <main class="main-wrapper">
         <div class="row">
             <form method="post" asp-action="Delete" asp-controller="Records">
-                <div class="col d-flex justify-content-center flex-column">
+                <div class="col d-flex justify-content-center flex-column breathing-room header-top-space">
                     <h3>Are you sure you would like to delete this Burial record?</h3>
                     <input type="hidden" name="burialId" value="@Model.Id"/>
-                    <button type="submit">Delete Record</button>
+                    <br />
+                    <button class="btn btn-primary"type="submit">Delete Record</button>
                 </div>
             </form>
+        </div>
+        <div class="empty-box4 empty-box">
+            <p></p>
         </div>
     </main>
 </div>

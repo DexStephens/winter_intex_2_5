@@ -337,6 +337,11 @@ label {
     margin-top:20px;
 }
 
+.breathing-room {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .header-heading {
     position: relative;
     z-index: 2;
@@ -553,6 +558,9 @@ label {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+checkbox {
+    float: left;
+}
 
 .title-small {
     margin-bottom: 12px;
@@ -574,6 +582,7 @@ label {
 
     .footer-link:hover {
         color: rgba(26, 27, 31, 0.75);
+        text-decoration: none;
     }
 
 .footer-social-block {

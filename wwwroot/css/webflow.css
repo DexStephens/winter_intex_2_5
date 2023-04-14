@@ -118,6 +118,10 @@ html.w-mod-touch * {
         color: white;
     }
 
+.push-right {
+    padding-left: 17px;
+}
+
 input.w-button {
     -webkit-appearance: button;
 }
