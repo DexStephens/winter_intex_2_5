@@ -23,6 +23,7 @@ namespace winter_intex_2_5.Data.Repositories
         public IQueryable<BiologicalC14> BiologicalC14s => Context.BiologicalC14;
 
         public IQueryable<Bodyanalysischart> Bodyanalysischarts => Context.Bodyanalysischart;
+        public IQueryable<Bodyanalysis2> Bodyanalysis2s => Context.Bodyanalysis2s;
 
         public IQueryable<Books> Books => Context.Books;
 
