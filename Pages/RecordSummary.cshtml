@@ -1,7 +1,7 @@
 ﻿@page
 @model winter_intex_2_5.Pages.RecordSummaryModel
 
-<h1>This is the page that has the summary of individual mummy records</h1>
+<h1>Record summary for @Model.SummaryTable.Id</h1>
 
 @foreach(var photo in Model.Photos)
 {
@@ -34,7 +34,193 @@
             <h4>Structure:</h4>
             <p>@Model.SummaryTable.Structure</p>
         }
+        else
+                {
+                    <div></div>
+                }
 
     }
-
+</div>
+<div>
+    @if (Model.BodyAnalysis.SquareNorthSouth != "")
+    {
+        <h3>Osteological Data:</h3>
+        <h4>Square North South:</h4>
+        <p>@Model.BodyAnalysis.SquareNorthSouth</p>
+        @if (Model.BodyAnalysis.DateofExamination != "")
+        {
+            <h4>Date of Examination:</h4>
+            <p>@Model.BodyAnalysis.DateofExamination</p>
+        }
+        @if (Model.BodyAnalysis.PreservationIndex != "")
+        {
+            <h4>Preservation Index:</h4>
+            <p>@Model.BodyAnalysis.PreservationIndex</p>
+        }
+        @if (Model.BodyAnalysis.HairColor != "")
+        {
+            <h4>Hair Color:</h4>
+            <p>@Model.BodyAnalysis.HairColor</p>
+        }
+        @if (Model.BodyAnalysis.Robust != "")
+        {
+            <h4>Robust:</h4>
+            <p>@Model.BodyAnalysis.Robust</p>
+        }
+        @if (Model.BodyAnalysis.SupraorbitalRidges != "")
+        {
+            <h4>Supraorbital Ridges:</h4>
+            <p>@Model.BodyAnalysis.SupraorbitalRidges</p>
+        }
+        @if (Model.BodyAnalysis.OrbitEdge != "")
+        {
+            <h4>Orbit Edge:</h4>
+            <p>@Model.BodyAnalysis.OrbitEdge</p>
+        }
+        @if (Model.BodyAnalysis.ParietalBossing != "")
+        {
+            <h4>Parietal Bossing:</h4>
+            <p>@Model.BodyAnalysis.ParietalBossing</p>
+        }
+        @if (Model.BodyAnalysis.Gonion != "")
+        {
+            <h4>Gonion:</h4>
+            <p>@Model.BodyAnalysis.Gonion</p>
+        }
+        @if (Model.BodyAnalysis.NuchalCrest != "")
+        {
+            <h4>Nuchal Crest:</h4>
+            <p>@Model.BodyAnalysis.NuchalCrest</p>
+        }
+        @if (Model.BodyAnalysis.ZygomaticCrest != "")
+        {
+            <h4>Zygomatic Crest:</h4>
+            <p>@Model.BodyAnalysis.ZygomaticCrest</p>
+        }
+        @if (Model.BodyAnalysis.SphenooccipitalSynchrondrosis != "")
+        {
+            <h4>Sphenooccipital Synchrondrosis:</h4>
+            <p>@Model.BodyAnalysis.SphenooccipitalSynchrondrosis</p>
+        }
+        @if (Model.BodyAnalysis.LamboidSuture != "")
+        {
+            <h4>Lamboid Suture:</h4>
+            <p>@Model.BodyAnalysis.LamboidSuture</p>
+        }
+        @if (Model.BodyAnalysis.SquamosSuture != "")
+        {
+            <h4>Squamos Suture:</h4>
+            <p>@Model.BodyAnalysis.SquamosSuture</p>
+        }
+        @if (Model.BodyAnalysis.ToothAttrition != "")
+        {
+            <h4>Tooth Attrition:</h4>
+            <p>@Model.BodyAnalysis.ToothAttrition</p>
+        }
+        @if (Model.BodyAnalysis.ToothEruption != "")
+        {
+            <h4>Tooth Eruption:</h4>
+            <p>@Model.BodyAnalysis.ToothEruption</p>
+        }
+        @if (Model.BodyAnalysis.ToothEruptionAgeEstimate != "")
+        {
+            <h4>Tooth Eruption Age Estimate:</h4>
+            <p>@Model.BodyAnalysis.ToothEruptionAgeEstimate</p>
+        }
+        @if (Model.BodyAnalysis.VentralArc != "")
+        {
+            <h4>Ventral Arc:</h4>
+            <p>@Model.BodyAnalysis.VentralArc</p>
+        }
+        @if (Model.BodyAnalysis.SubpubicAngle != "")
+        {
+            <h4>Subpubic Angle:</h4>
+            <p>@Model.BodyAnalysis.SubpubicAngle</p>
+        }
+        @if (Model.BodyAnalysis.SciaticNotch != "")
+        {
+            <h4>Sciatic Notch:</h4>
+            <p>@Model.BodyAnalysis.SciaticNotch</p>
+        }
+        @if (Model.BodyAnalysis.PubicBone != "")
+        {
+            <h4>Pubic Bone:</h4>
+            <p>@Model.BodyAnalysis.PubicBone</p>
+        }
+        @if (Model.BodyAnalysis.PreauricularSulcusBoolean != "")
+        {
+            <h4>Preauricular Sulcus Boolean:</h4>
+            <p>@Model.BodyAnalysis.PreauricularSulcusBoolean</p>
+        }
+        @if (Model.BodyAnalysis.MedialIpRamus != "")
+        {
+            <h4>Medial Ip Ramus:</h4>
+            <p>@Model.BodyAnalysis.MedialIpRamus</p>
+        }
+        @if (Model.BodyAnalysis.DorsalPittingBoolean != "")
+        {
+            <h4>Dorsal Pitting Boolean:</h4>
+            <p>@Model.BodyAnalysis.DorsalPittingBoolean</p>
+        }
+        @if (Model.BodyAnalysis.Femur != "")
+        {
+            <h4>Femur:</h4>
+            <p>@Model.BodyAnalysis.Femur</p>
+        }
+        @if (Model.BodyAnalysis.FemurHeadDiameter != "")
+        {
+            <h4>Femur Head Diameter:</h4>
+            <p>@Model.BodyAnalysis.FemurHeadDiameter</p>
+        }
+        @if (Model.BodyAnalysis.FemurLength != "")
+        {
+            <h4>Femur Length:</h4>
+            <p>@Model.BodyAnalysis.FemurLength</p>
+        }
+        @if (Model.BodyAnalysis.Humerus != "")
+        {
+            <h4>Humerus:</h4>
+            <p>@Model.BodyAnalysis.Humerus</p>
+        }
+        @if (Model.BodyAnalysis.HumerusHeadDiameter != "")
+        {
+            <h4>Humerus Head Diameter:</h4>
+            <p>@Model.BodyAnalysis.HumerusHeadDiameter</p>
+        }
+        @if (Model.BodyAnalysis.HumerusLength != "")
+        {
+            <h4>Humerus Length:</h4>
+            <p>@Model.BodyAnalysis.HumerusLength</p>
+        }
+        @if (Model.BodyAnalysis.Tibia != "")
+        {
+            <h4>Tibia:</h4>
+            <p>@Model.BodyAnalysis.Tibia</p>
+        }
+        @if (Model.BodyAnalysis.EstimateStature != "")
+        {
+            <h4>Estimate Stature:</h4>
+            <p>@Model.BodyAnalysis.EstimateStature</p>
+        }
+        @if (Model.BodyAnalysis.Osteophytosis != "")
+        {
+            <h4>Osteophytosis:</h4>
+            <p>@Model.BodyAnalysis.Osteophytosis</p>
+        }
+        @if (Model.BodyAnalysis.CariesPeriodontalDisease != "")
+        {
+            <h4>Carries Periodontal Disease:</h4>
+            <p>@Model.BodyAnalysis.CariesPeriodontalDisease</p>
+        }
+        @if (Model.BodyAnalysis.Notes != "")
+        {
+            <h4>Notes:</h4>
+            <p>@Model.BodyAnalysis.Notes</p>
+        }
+        @if (Model.BodyAnalysis.Observations != "")
+        {
+            <h4>Observations:</h4>
+            <p>@Model.BodyAnalysis.Observations</p>
+        }
+    }
 </div>

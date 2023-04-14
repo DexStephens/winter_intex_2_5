@@ -12,6 +12,7 @@ namespace winter_intex_2_5.Pages
         public int Id { get; set; }
         public IMummyRepository MummyRepository { get; set; }
         public SummaryTable SummaryTable { get; set; }
+        public Bodyanalysis2 BodyAnalysis { get; set; }
         public IEnumerable<Photodata> Photos { get; set; }
         public RecordSummaryModel(IMummyRepository mummyRepository)
         {
@@ -27,6 +28,8 @@ namespace winter_intex_2_5.Pages
             //get the image information
             var photoDataTextiles = MummyRepository.PhotodatasTextiles.Where(x => x.MainTextileid == SummaryTable.Textileid);
             Photos = MummyRepository.Photodatas.Where(x => photoDataTextiles.Select(x => x.MainPhotodataid).Contains(x.Id));
+
+            BodyAnalysis = MummyRepository.Bodyanalysis2s.First(x => x.Id == SummaryTable.Id.ToString());
         }
     }
 }
