@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -114,7 +115,7 @@ namespace winter_intex_2_5
 
             services.AddSingleton(new InferenceSessions(sexSession, wrappingSession));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<MummyContext>()
                 .AddDefaultTokenProviders();
@@ -165,6 +166,12 @@ namespace winter_intex_2_5
                 // The default HSTS value is 30 days. You may want to change this for production scenarios.
                 app.UseHsts();
             }
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=0; includeSubDomains;");
+                await next();
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

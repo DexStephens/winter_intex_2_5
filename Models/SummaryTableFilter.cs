@@ -17,6 +17,7 @@ namespace winter_intex_2_5.Models
         public decimal? MaxDepth { get; set;}
         public decimal? MinStature { get; set; }
         public decimal? MaxStature { get;set; }
+        public bool NotFilter { get; set; } = false;
         public SummaryTableFilter() { }
 
         public SummaryTableFilter(IEnumerable<string>? hairColors, IEnumerable<string>? structures, IEnumerable<string>? deathAges, IEnumerable<string>? headDirections, IEnumerable<string>? textileFunctions, IEnumerable<string>? textileColors, IEnumerable<string> burialIDs, bool male, bool female, decimal? minDepth, decimal? maxDepth, decimal? minStature, decimal? maxStature)
