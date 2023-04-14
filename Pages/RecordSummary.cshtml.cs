@@ -29,7 +29,14 @@ namespace winter_intex_2_5.Pages
             var photoDataTextiles = MummyRepository.PhotodatasTextiles.Where(x => x.MainTextileid == SummaryTable.Textileid);
             Photos = MummyRepository.Photodatas.Where(x => photoDataTextiles.Select(x => x.MainPhotodataid).Contains(x.Id));
 
-            BodyAnalysis = MummyRepository.Bodyanalysis2s.First(x => x.Id == SummaryTable.Id.ToString());
+            try
+            {
+                BodyAnalysis = MummyRepository.Bodyanalysis2s.First(x => x.Id == SummaryTable.Id.ToString());
+            }
+            catch
+            {
+
+            }
         }
     }
 }
