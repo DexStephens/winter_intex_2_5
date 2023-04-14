@@ -123,7 +123,6 @@ namespace winter_intex_2_5
             
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
-            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -227,7 +226,6 @@ namespace winter_intex_2_5
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-                endpoints.MapBlazorHub();
             });
         }
     }
