@@ -83,14 +83,6 @@ namespace winter_intex_2_5
                 });
             }
 
-            // allow cookies/site-switching for Google Sign in
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-                options.CheckConsentNeeded = context => true;
-                options.Secure = CookieSecurePolicy.Always;
-            });
-
             services.Configure<IdentityOptions>(options =>
                 {
                     options.Password.RequireDigit = true;
@@ -102,6 +94,7 @@ namespace winter_intex_2_5
 
             services.AddRazorPages();
 
+            // allow cookies/site-switching
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -109,6 +102,7 @@ namespace winter_intex_2_5
                 options.CheckConsentNeeded = context => true;
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Secure = CookieSecurePolicy.Always;
             });
 
             services.AddScoped<IMummyRepository, EFMummyRepository>();
