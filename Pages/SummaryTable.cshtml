@@ -35,6 +35,7 @@
             <h1>View Burial Data</h1>
             <div>
                 <p>"This database is designed to make the work of the BYU Egypt Excavation Project available to the world. It represents the data gained from decades of excavation combined with digital analytical power that should make any number of studies possible. We believe that the data presented herein makes it possible for us to tell something of the stories of those who lived so long ago in Egypt, and that those stories deserve to be told." (<a href="https://egypt.byu.edu" target="_blank">Current Fag el-Gamous page</a>)</p>
+                <br />
                 <p>On this page, filter data by one or more features to look for burials that fit certain criteria, or click on a specific burial to view more details, including images associated.</p>
             </div>
             <br />
@@ -170,15 +171,16 @@
                                     }
                                 </div>
                             }
+                            <div>
+                                <button class="button-primary w-button" type="submit">Filter Burial Records</button>
+                            </div>
+                            <div>
+                                <form method="post" asp-page-handler="Reset">
+                                    <button class="button-primary w-button button-warning" type="submit">Reset Filters</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="row">
-                            <button class="button-primary w-button" type="submit">Filter Burial Records</button>
-                        </div>
-                        <div>
-                            <form method="post" asp-page-handler="Reset">
-                                <button class="button-primary w-button button-warning" type="submit">Reset Filters</button>
-                            </form>
-                        </div>
+                       
                     </div>
                 </form>
                
