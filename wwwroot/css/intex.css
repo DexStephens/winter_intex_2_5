@@ -574,14 +574,14 @@ checkbox {
 .footer-link {
     margin-top: 12px;
     margin-bottom: 6px;
-    color: #5c0794;
+    color: #5A77C9;
     font-size: 14px;
     line-height: 16px;
     text-decoration: none;
 }
 
     .footer-link:hover {
-        color: rgba(26, 27, 31, 0.75);
+        color: #7193f3;
         text-decoration: none;
     }
 
@@ -1001,6 +1001,10 @@ checkbox {
         padding-left: 5px;
     }
 
+    .custom-link {
+        color: #5A77C9 !important; 
+    }
+
     .nav-dropdown-list.shadow-three.w--open {
         position: absolute;
     }
@@ -1132,7 +1136,7 @@ checkbox {
     }
 
     .footer-link:hover {
-        color: rgba(26, 27, 31, 0.75);
+        color: #7193f3;
     }
 
     .footer-social-block {
