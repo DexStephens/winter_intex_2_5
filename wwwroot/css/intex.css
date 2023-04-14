@@ -1310,3 +1310,8 @@ img {
     -ms-grid-row-span: 1;
     grid-row-end: span 1;
 }
+
+.resize-checkbox {
+    height:24px;
+    width:24px;
+}
