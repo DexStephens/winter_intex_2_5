@@ -1,0 +1,17 @@
+﻿@model bool
+
+<div class="container">
+    <main class="main-wrapper">
+        <div class="row d-flex justify-content-center align-content-center">
+            @if(Model)
+            {
+                <h3>Record successfully added</h3>
+            }
+            else
+            {
+                <h3>Record successfully deleted</h3>
+            }
+            <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Return to Home</a>
+        </div>
+    </main>
+</div>

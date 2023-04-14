@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using winter_intex_2_5.Models;
 
 namespace winter_intex_2_5.Data.Repositories
