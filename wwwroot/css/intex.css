@@ -1020,6 +1020,7 @@ img {
     .footer-dark {
         padding-right: 15px;
         padding-left: 15px;
+        border-bottom-color: #ffe9cd;
     }
 
     .footer-wrapper {

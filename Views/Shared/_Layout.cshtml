@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" title="boot" />
     <link rel="stylesheet" href="~/css/intex.css" />
 
-   
+    <link rel="icon" type="image/x-icon" href="~/img/giza.png">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <script src="~/js/ajax.js" type="text/javascript"></script>
@@ -25,12 +25,12 @@
             <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-center-container shadow-three w-nav">
                 <div class="container">
                     <div class="navbar-wrapper-three">
-                        <a href="#" class="navbar-brand-three w-nav-brand"><img src="~/img/giza.png" loading="lazy" width="121" alt="" class="image"></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand-three w-nav-brand"><img src="~/img/giza.png" loading="lazy" width="121" alt="" class="image"></a>
                         <nav role="navigation" class="nav-menu-wrapper-three w-nav-menu">
                             <div class="nav-menu-three">
                                 <ul role="list" class="nav-menu-block w-list-unstyled">
                                     <li>
-                                        <a href="#" class="nav-link">Home</a>
+                                        <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
                                     </li>
                                     <li>
                                         <a asp-page="/SummaryTable" class="nav-link">Burial Summary</a>
