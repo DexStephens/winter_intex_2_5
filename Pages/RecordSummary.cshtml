@@ -9,3 +9,32 @@
 }
 
 @*need field notes, measurements, and other valuable information*@
+<div>
+    <h3>Field Notes:</h3>
+    <p>@Model.SummaryTable.Text</p>
+</div>
+<div>
+    @if (Model.SummaryTable.Textiledescription != "")
+    {
+        <h3>Associated Textiles:</h3>
+        <h4>Description:</h4>
+        <p>@Model.SummaryTable.Textiledescription</p>
+        @if (Model.SummaryTable.Textilecolor != "")
+        {
+            <h4>Color:</h4>
+            <p>@Model.SummaryTable.Textilecolor</p>
+        }
+        @if (Model.SummaryTable.Textilefunction != "")
+        {
+            <h4>Function:</h4>
+            <p>@Model.SummaryTable.Textilefunction</p>
+        }
+        @if (Model.SummaryTable.Structure != "")
+        {
+            <h4>Structure:</h4>
+            <p>@Model.SummaryTable.Structure</p>
+        }
+
+    }
+
+</div>
