@@ -169,7 +169,7 @@ namespace winter_intex_2_5
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("Strict-Transport-Security", "max-age=0; includeSubDomains;");
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=63072000; includeSubDomains;");
                 await next();
             });
 
