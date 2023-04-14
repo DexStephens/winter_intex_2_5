@@ -5,8 +5,10 @@
     ViewData["Title"] = "Record Summary";
 }
 
+<div class="container">
+    <main role="main" class="pb-3">
 <div>
-    <h1>Record summary for @Model.SummaryTable.Id</h1>
+    <h1 class="header-top-space">Record summary for @Model.SummaryTable.Id</h1>
 
     @foreach (var photo in Model.Photos)
     {
@@ -253,4 +255,9 @@
     <div class="row text-center">
         <a asp-page="/SummaryTable" class="button-primary">Return to Burial Summary</a>
     </div>
+</div>
+<div class="empty-box4"
+    <p></p>
+</div>
+</main>
 </div>
