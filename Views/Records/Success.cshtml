@@ -2,7 +2,7 @@
 
 <div class="container">
     <main class="main-wrapper">
-        <div class="row d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center align-items-center header-top-space">
             @if(Model)
             {
                 <h3>Record successfully added or edited</h3>
@@ -11,7 +11,16 @@
             {
                 <h3>Record successfully deleted</h3>
             }
+        </div>
+        <br />
+        <div class="justify-content-center align-items-center">
             <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Return to Home</a>
+        </div>
+        <div class="empty-box4">
+            <p></p>
+        </div>
+        <div class="empty-box2">
+            <p></p>
         </div>
     </main>
 </div>

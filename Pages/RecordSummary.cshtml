@@ -8,7 +8,7 @@
     <main class="main-wrapper">
 
         <div>
-            <div class="card">
+            <div class="card header-top-space breathing-room">
                 <div class="card-header">
                     Record summary for @Model.SummaryTable.Id
                 </div>
@@ -21,8 +21,9 @@
                     {
                         <form method="post" asp-controller="Records" asp-action="Index">
                             <input type="hidden" name="burialId" value="@Model.SummaryTable.Id" />
-                            <button type="submit" class="btn btn-success">Edit Record</button>
+                            <button type="submit" class="btn btn-primary">Edit Record</button>
                         </form>
+                        <br />
                         <form method="post" asp-controller="Records" asp-action="DeleteConfirmation">
                         <input type="hidden" name="burialId" value="@Model.SummaryTable.Id" />
                         <button type="submit" class="btn btn-danger">Delete Record</button>
@@ -32,7 +33,7 @@
             </div>
             @if (!string.IsNullOrEmpty(Model.SummaryTable.Text))
             {
-                <div class="card">
+                <div class="card breathing-room" >
                     <div class="card-header">
                         Field Notes:
                     </div>
@@ -44,7 +45,7 @@
 
             @if (!string.IsNullOrEmpty(Model.SummaryTable.Textiledescription))
             {
-                <div class="card">
+                <div class="card breathing-room">
                     <div class="card-header">
                         Textiles
                     </div>
@@ -74,7 +75,7 @@
                 {
                     @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SquareNorthSouth))
                     {
-                        <div class="card">
+                        <div class="card breathing-room">
                             <div class="card-header">
                                 Osteological Data:
                             </div>
@@ -268,8 +269,11 @@
                 }
             </div>
             <div class="row text-center">
-                <a asp-page="/SummaryTable" class="button-primary">Return to Burial Summary</a>
+                <a asp-page="/SummaryTable" class="btn button-primary">Return to Burial Summary</a>
             </div>
+        </div>
+        <div class="empty-box4"
+            <p></p>
         </div>
     </main>
 </div>
