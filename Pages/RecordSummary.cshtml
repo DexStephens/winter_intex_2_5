@@ -4,260 +4,272 @@
 @{
     ViewData["Title"] = "Record Summary";
 }
-
 <div class="container">
-    <main role="main" class="pb-3">
-<div>
-    <h1 class="header-top-space">Record summary for @Model.SummaryTable.Id</h1>
+    <main class="main-wrapper">
 
-    @foreach (var photo in Model.Photos)
-    {
-        <img src="@photo.Url" height="200" width="200" />
-    }
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    Record summary for @Model.SummaryTable.Id
+                </div>
+                <div class="card-body">
+                    @foreach (var photo in Model.Photos)
+                    {
+                        <img src="@photo.Url" height="200" width="200" />
+                    }
+                    @if(User.IsInRole("researcher") || User.IsInRole("administrator"))
+                    {
+                        <form method="post" asp-controller="Records" asp-action="Index">
+                            <input type="hidden" name="burialId" value="@Model.SummaryTable.Id" />
+                            <button type="submit" class="btn btn-success">Edit Record</button>
+                        </form>
+                        <form method="post" asp-controller="Records" asp-action="DeleteConfirmation">
+                        <input type="hidden" name="burialId" value="@Model.SummaryTable.Id" />
+                        <button type="submit" class="btn btn-danger">Delete Record</button>
+                        </form>
+                    }
+                </div>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.SummaryTable.Text))
+            {
+                <div class="card">
+                    <div class="card-header">
+                        Field Notes:
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@Model.SummaryTable.Text</p>
+                    </div>
+                </div>
+            }
 
-    @*need field notes, measurements, and other valuable information*@
-    <div>
-        @if (!string.IsNullOrEmpty(Model.SummaryTable.Text))
-        {
-            <h3>Field Notes:</h3>
-            <p>@Model.SummaryTable.Text</p>
-        }
-    </div>
-    <div>
-        @if (!string.IsNullOrEmpty(Model.SummaryTable.Textiledescription))
-        {
-            <h3>Textiles</h3>
-            <h5>Description:</h5>
-            <p>@Model.SummaryTable.Textiledescription</p>
-            @if (!string.IsNullOrEmpty(Model.SummaryTable.Textilecolor))
+            @if (!string.IsNullOrEmpty(Model.SummaryTable.Textiledescription))
             {
-                <h5>Color:</h5>
-                <p>@Model.SummaryTable.Textilecolor</p>
+                <div class="card">
+                    <div class="card-header">
+                        Textiles
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Description:</h5>
+                        <p class="card-text">@Model.SummaryTable.Textiledescription</p>
+                        @if (!string.IsNullOrEmpty(Model.SummaryTable.Textilecolor))
+                        {
+                            <h5 class="card-title">Color:</h5>
+                            <p class="card-text">@Model.SummaryTable.Textilecolor</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.SummaryTable.Textilefunction))
+                        {
+                            <h5 class="card-title">Function:</h5>
+                            <p class="card-text">@Model.SummaryTable.Textilefunction</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.SummaryTable.Structure))
+                        {
+                            <h5 class="card-title">Structure:</h5>
+                            <p class="card-text">@Model.SummaryTable.Structure</p>
+                        }
+                    </div>
+                </div>
             }
-            @if (!string.IsNullOrEmpty(Model.SummaryTable.Textilefunction))
-            {
-                <h5>Function:</h5>
-                <p>@Model.SummaryTable.Textilefunction</p>
-            }
-            @if (!string.IsNullOrEmpty(Model.SummaryTable.Structure))
-            {
-                <h5>Structure:</h5>
-                <p>@Model.SummaryTable.Structure</p>
-            }
-            else
-            {
-                <div></div>
-            }
-        }
-        else
-        {
-            <div></div>
-        }
-    </div>
-    <div>
-        @if (Model.BodyAnalysis != null)
-        {
-            @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SquareNorthSouth))
-            {
-                <h3>Osteological Data:</h3>
-                <h5>Square North South:</h5>
-                <p>@Model.BodyAnalysis.SquareNorthSouth</p>
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.DateofExamination))
+            <div>
+                @if (Model.BodyAnalysis != null)
                 {
-                    <h5>Date of Examination:</h5>
-                    <p>@Model.BodyAnalysis.DateofExamination</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PreservationIndex))
-                {
-                    <h5>Preservation Index:</h5>
-                    <p>@Model.BodyAnalysis.PreservationIndex</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HairColor))
-                {
-                    <h5>Hair Color:</h5>
-                    <p>@Model.BodyAnalysis.HairColor</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Robust))
-                {
-                    <h5>Robust:</h5>
-                    <p>@Model.BodyAnalysis.Robust</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SupraorbitalRidges))
-                {
-                    <h5>Supraorbital Ridges:</h5>
-                    <p>@Model.BodyAnalysis.SupraorbitalRidges</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.OrbitEdge))
-                {
-                    <h5>Orbit Edge:</h5>
-                    <p>@Model.BodyAnalysis.OrbitEdge</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ParietalBossing))
-                {
-                    <h5>Parietal Bossing:</h5>
-                    <p>@Model.BodyAnalysis.ParietalBossing</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Gonion))
-                {
-                    <h5>Gonion:</h5>
-                    <p>@Model.BodyAnalysis.Gonion</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.NuchalCrest))
-                {
-                    <h5>Nuchal Crest:</h5>
-                    <p>@Model.BodyAnalysis.NuchalCrest</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ZygomaticCrest))
-                {
-                    <h5>Zygomatic Crest:</h5>
-                    <p>@Model.BodyAnalysis.ZygomaticCrest</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SphenooccipitalSynchrondrosis))
-                {
-                    <h5>Sphenooccipital Synchrondrosis:</h5>
-                    <p>@Model.BodyAnalysis.SphenooccipitalSynchrondrosis</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.LamboidSuture))
-                {
-                    <h5>Lamboid Suture:</h5>
-                    <p>@Model.BodyAnalysis.LamboidSuture</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SquamosSuture))
-                {
-                    <h5>Squamos Suture:</h5>
-                    <p>@Model.BodyAnalysis.SquamosSuture</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothAttrition))
-                {
-                    <h5>Tooth Attrition:</h5>
-                    <p>@Model.BodyAnalysis.ToothAttrition</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothEruption))
-                {
-                    <h5>Tooth Eruption:</h5>
-                    <p>@Model.BodyAnalysis.ToothEruption</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothEruptionAgeEstimate))
-                {
-                    <h5>Tooth Eruption Age Estimate:</h5>
-                    <p>@Model.BodyAnalysis.ToothEruptionAgeEstimate</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.VentralArc))
-                {
-                    <h5>Ventral Arc:</h5>
-                    <p>@Model.BodyAnalysis.VentralArc</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SubpubicAngle))
-                {
-                    <h5>Subpubic Angle:</h5>
-                    <p>@Model.BodyAnalysis.SubpubicAngle</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SciaticNotch))
-                {
-                    <h5>Sciatic Notch:</h5>
-                    <p>@Model.BodyAnalysis.SciaticNotch</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PubicBone))
-                {
-                    <h5>Pubic Bone:</h5>
-                    <p>@Model.BodyAnalysis.PubicBone</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PreauricularSulcusBoolean))
-                {
-                    <h5>Preauricular Sulcus Boolean:</h5>
-                    <p>@Model.BodyAnalysis.PreauricularSulcusBoolean</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.MedialIpRamus))
-                {
-                    <h5>Medial Ip Ramus:</h5>
-                    <p>@Model.BodyAnalysis.MedialIpRamus</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.DorsalPittingBoolean))
-                {
-                    <h5>Dorsal Pitting Boolean:</h5>
-                    <p>@Model.BodyAnalysis.DorsalPittingBoolean</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Femur))
-                {
-                    <h5>Femur:</h5>
-                    <p>@Model.BodyAnalysis.Femur</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.FemurHeadDiameter))
-                {
-                    <h5>Femur Head Diameter:</h5>
-                    <p>@Model.BodyAnalysis.FemurHeadDiameter</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.FemurLength))
-                {
-                    <h5>Femur Length:</h5>
-                    <p>@Model.BodyAnalysis.FemurLength</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Humerus))
-                {
-                    <h5>Humerus:</h5>
-                    <p>@Model.BodyAnalysis.Humerus</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HumerusHeadDiameter))
-                {
-                    <h5>Humerus Head Diameter:</h5>
-                    <p>@Model.BodyAnalysis.HumerusHeadDiameter</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HumerusLength))
-                {
-                    <h5>Humerus Length:</h5>
-                    <p>@Model.BodyAnalysis.HumerusLength</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Tibia))
-                {
-                    <h5>Tibia:</h5>
-                    <p>@Model.BodyAnalysis.Tibia</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.EstimateStature))
-                {
-                    <h5>Estimate Stature:</h5>
-                    <p>@Model.BodyAnalysis.EstimateStature</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Osteophytosis))
-                {
-                    <h5>Osteophytosis:</h5>
-                    <p>@Model.BodyAnalysis.Osteophytosis</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.CariesPeriodontalDisease))
-                {
-                    <h5>Carries Periodontal Disease:</h5>
-                    <p>@Model.BodyAnalysis.CariesPeriodontalDisease</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Notes))
-                {
-                    <h5>Notes:</h5>
-                    <p>@Model.BodyAnalysis.Notes</p>
-                }
-                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Observations))
-                {
-                    <h5>Observations:</h5>
-                    <p>@Model.BodyAnalysis.Observations</p>
+                    @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SquareNorthSouth))
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                Osteological Data:
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Square North South:</h5>
+                                <p class="card-text">@Model.BodyAnalysis.SquareNorthSouth</p>
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.DateofExamination))
+                                {
+                                    <h5 class="card-title">Date of Examination:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.DateofExamination</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PreservationIndex))
+                                {
+                                    <h5 class="card-title">Preservation Index:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.PreservationIndex</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HairColor))
+                                {
+                                    <h5 class="card-title">Hair Color:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.HairColor</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Robust))
+                                {
+                                    <h5 class="card-title">Robust:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Robust</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SupraorbitalRidges))
+                                {
+                                    <h5 class="card-title">Supraorbital Ridges:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.SupraorbitalRidges</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.OrbitEdge))
+                                {
+                                    <h5 class="card-title">Orbit Edge:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.OrbitEdge</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ParietalBossing))
+                                {
+                                    <h5 class="card-title">Parietal Bossing:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.ParietalBossing</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Gonion))
+                                {
+                                    <h5 class="card-title">Gonion:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Gonion</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.NuchalCrest))
+                                {
+                                    <h5 class="card-title">Nuchal Crest:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.NuchalCrest</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ZygomaticCrest))
+                                {
+                                    <h5 class="card-title">Zygomatic Crest:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.ZygomaticCrest</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SphenooccipitalSynchrondrosis))
+                                {
+                                    <h5 class="card-title">Sphenooccipital Synchrondrosis:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.SphenooccipitalSynchrondrosis</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.LamboidSuture))
+                                {
+                                    <h5 class="card-title">Lamboid Suture:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.LamboidSuture</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SquamosSuture))
+                                {
+                                    <h5 class="card-title">Squamos Suture:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.SquamosSuture</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothAttrition))
+                                {
+                                    <h5 class="card-title">Tooth Attrition:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.ToothAttrition</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothEruption))
+                                {
+                                    <h5 class="card-title">Tooth Eruption:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.ToothEruption</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.ToothEruptionAgeEstimate))
+                                {
+                                    <h5 class="card-title">Tooth Eruption Age Estimate:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.ToothEruptionAgeEstimate</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.VentralArc))
+                                {
+                                    <h5 class="card-title">Ventral Arc:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.VentralArc</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SubpubicAngle))
+                                {
+                                    <h5 class="card-title">Subpubic Angle:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.SubpubicAngle</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.SciaticNotch))
+                                {
+                                    <h5 class="card-title">Sciatic Notch:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.SciaticNotch</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PubicBone))
+                                {
+                                    <h5 class="card-title">Pubic Bone:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.PubicBone</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.PreauricularSulcusBoolean))
+                                {
+                                    <h5 class="card-title">Preauricular Sulcus Boolean:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.PreauricularSulcusBoolean</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.MedialIpRamus))
+                                {
+                                    <h5 class="card-title">Medial Ip Ramus:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.MedialIpRamus</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.DorsalPittingBoolean))
+                                {
+                                    <h5 class="card-title">Dorsal Pitting Boolean:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.DorsalPittingBoolean</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Femur))
+                                {
+                                    <h5 class="card-title">Femur:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Femur</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.FemurHeadDiameter))
+                                {
+                                    <h5 class="card-title">Femur Head Diameter:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.FemurHeadDiameter</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.FemurLength))
+                                {
+                                    <h5 class="card-title">Femur Length:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.FemurLength</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Humerus))
+                                {
+                                    <h5 class="card-title">Humerus:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Humerus</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HumerusHeadDiameter))
+                                {
+                                    <h5 class="card-title">Humerus Head Diameter:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.HumerusHeadDiameter</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.HumerusLength))
+                                {
+                                    <h5 class="card-title">Humerus Length:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.HumerusLength</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Tibia))
+                                {
+                                    <h5 class="card-title">Tibia:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Tibia</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.EstimateStature))
+                                {
+                                    <h5 class="card-title">Estimate Stature:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.EstimateStature</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Osteophytosis))
+                                {
+                                    <h5 class="card-title">Osteophytosis:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Osteophytosis</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.CariesPeriodontalDisease))
+                                {
+                                    <h5 class="card-title">Carries Periodontal Disease:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.CariesPeriodontalDisease</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Notes))
+                                {
+                                    <h5 class="card-title">Notes:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Notes</p>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.BodyAnalysis.Observations))
+                                {
+                                    <h5 class="card-title">Observations:</h5>
+                                    <p class="card-text">@Model.BodyAnalysis.Observations</p>
+                                }
+                            </div>
+                        </div>
+
+
+                    }
                 }
                 else
                 {
-                    <div></div>
+                    <p>No additional details to display!</p>
                 }
-            }
-            else
-            {
-                <div></div>
-            }
-        }
-        else
-        {
-            <p>No additional details to display!</p>
-        }
-    </div>
-    <div class="row text-center">
-        <a asp-page="/SummaryTable" class="button-primary">Return to Burial Summary</a>
-    </div>
-</div>
-<div class="empty-box4"
-    <p></p>
-</div>
-</main>
+            </div>
+            <div class="row text-center">
+                <a asp-page="/SummaryTable" class="button-primary">Return to Burial Summary</a>
+            </div>
+        </div>
+    </main>
 </div>

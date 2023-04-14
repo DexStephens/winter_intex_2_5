@@ -18,13 +18,18 @@ namespace winter_intex_2_5.Controllers
             _mummyRepository = mummyRepository;
             _mummyContext = mummyContext;
         }
-        public IActionResult Index(long burialId = 0)
+        public IActionResult Index()
         {
+            long burialId = 0;
             var burialMain = new Burialmain();
-            if(burialId != 0)
+            try
             {
-                ViewBag.Editing = true;
+                burialId = Convert.ToInt64(Request.Form["burialId"]);
                 burialMain = _mummyRepository.Burialmains.Single(x => x.Id == burialId);
+            }
+            catch
+            {
+                var exception = new Exception();
             }
             
             return View(burialMain);
@@ -62,6 +67,8 @@ namespace winter_intex_2_5.Controllers
                     else
                     {
                         //add record
+                        long maxId = _mummyRepository.Burialmains.Max(x => x.Id);
+                        burialmain.Id = maxId + 1;
                         _mummyContext.Add(burialmain);
                     }
                     _mummyContext.SaveChanges();
