@@ -38,6 +38,8 @@ namespace winter_intex_2_5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             // attempt to configure HTTPS forwarding
             services.Configure<ForwardedHeadersOptions>(options =>
             {
@@ -155,12 +157,13 @@ namespace winter_intex_2_5
                 app.UseDeveloperExceptionPage();
                 app.UseForwardedHeaders();
                 app.UseDatabaseErrorPage();
+                app.UseHsts();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseForwardedHeaders();
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios.
                 app.UseHsts();
             }
 
@@ -182,7 +185,36 @@ namespace winter_intex_2_5
                     "default-src 'none'; font-src fonts.googleapis.com fonts.gstatic.com data:; script-src 'self' 'sha256-H4IABS2cOkW43LaKS8PJIKb4LQYW8fDGp5bMnfUrJk4='; connect-src 'self'; img-src 'self' cwadmin.byu.edu; style-src 'self' fonts.googleapis.com 'unsafe-hashes' 'sha256-IfHP2B1mknVMFgr5LV7QIYbApWrK4JPQ/69mRfiZpgA=' 'sha256-lY3/x25zCDEAXrR2rMuzb7TLKSwbH6DewUXG+rQn1lM=' 'sha256-ZjfSlZb0jCKd/Ah+IYb+6b7J3jGBBq1/nOWaFcCLKq8=' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE=' 'sha256-l32kuTgbhZFV7YL2q1Sv/65m8dy+QzAV1CjPDUML0hE=' 'sha256-l32kuTgbhZFV7YL2q1Sv/65m8dy+QzAV1CjPDUML0hE=' 'sha256-alQkhzRik30p4D42M4x52HUwzK1/HLrcDh9ydLkkoOI='; base-uri 'self';form-action 'self'");
                 await next();
             });
-            
+
+            //Permission policy header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+                await next();
+            });
+
+            //Referrer policy header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
+                await next();
+            });
+
+            //X-Frame-Options
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                await next();
+            });
+
+            //X-Content-Type-Options header
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                await next();
+            });
+
+
             app.UseRouting();
 
             app.UseAuthentication();
