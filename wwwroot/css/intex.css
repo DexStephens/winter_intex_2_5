@@ -440,11 +440,15 @@ img {
 }
 
 .empty-box {
-    padding: 113px;
+    padding: 114px;
 }
 
 .empty-box2 {
-    padding: 60px;
+    padding: 165px;
+}
+
+.empty-box3 {
+    padding: 100px;
 }
 .footer {
     position: absolute;

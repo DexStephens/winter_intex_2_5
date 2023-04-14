@@ -35,15 +35,7 @@
                                     <li>
                                         <a asp-page="/SummaryTable" class="nav-link">Burial Summary</a>
                                     </li>
-                                    @if(User.IsInRole("administrator"))
-                                    {
-                                        <li>
-                                            <a class="nav-link" asp-controller="RoleManager" asp-action="Index">Role Management</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" asp-controller="UserRoles" asp-action="Index">User Roles</a>
-                                        </li>
-                                    }
+                                   
                                     <li>
                                         <div data-hover="false" data-delay="0" class="nav-dropdown w-dropdown">
                                             <div class="nav-dropdown-toggle w-dropdown-toggle">
