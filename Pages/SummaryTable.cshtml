@@ -39,6 +39,10 @@
                 <p>On this page, filter data by one or more features to look for burials that fit certain criteria, or click on a specific burial to view more details, including images associated with that record.</p>
             </div>
             <br />
+            @if(User.IsInRole("administrator") || User.IsInRole("researcher"))
+            {
+                <a asp-controller="Records" asp-action="Index" class="button-primary w-button" type="submit">Add Burial Records</a>
+            }
         </div>
         <div class="row">
             <div class="col-md-9 d-flex align-items-center" id="filterHandler">
@@ -159,7 +163,7 @@
                                     <div class="form-check">
                                         
                                         <input class="form-check-input form-group" id="male" asp-for="SummaryTableFilter.Male" />
-                                        <label class="form-check-label">Male</label>
+                                        <label for="male" class="form-check-label">Male</label>
 
                                     </div>
                                     }
@@ -168,7 +172,7 @@
                                         <div class="form-check">
                                             
                                             <input class="form-check-input form-group" id="male" type="checkbox" asp-for="SummaryTableFilter.Male" />
-                                        <label class="form-check-label">Male</label>
+                                        <label for="male" class="form-check-label">Male</label>
                                         </div>
                                     }
                                     @if (Model.AllSummaryTables.Any(x => x.Sex == "F"))
@@ -176,7 +180,7 @@
                                         <div class="form-check">
                                             
                                             <input class="form-check-input form-group" id="female" type="checkbox" asp-for="SummaryTableFilter.Female" />
-                                        <label class="form-check-label">Female</label>
+                                        <label for="female" class="form-check-label">Female</label>
                                         </div>
                                     }
                                     else if (Model.SummaryTableFilter.NotFilter && Model.SummaryTableFilter.Female)
@@ -184,7 +188,7 @@
                                         <div class="form-check">
                                             
                                             <input class="form-check-input form-group" id="female" type="checkbox" asp-for="SummaryTableFilter.Female" />
-                                        <label class="form-check-label" >Female</label>
+                                        <label for="female" class="form-check-label" >Female</label>
                                         </div>
                                     }
                             }
