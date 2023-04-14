@@ -14,6 +14,7 @@ namespace winter_intex_2_5.Data.Repositories
         IQueryable<Biological> Biologicals { get; }
         IQueryable<BiologicalC14> BiologicalC14s { get; }
         IQueryable<Bodyanalysischart> Bodyanalysischarts { get; }
+        IQueryable<Bodyanalysis2> Bodyanalysis2s { get; }
         IQueryable<Books> Books { get; }
         IQueryable<Burialmain> Burialmains { get; }
         IQueryable<BurialmainBiological> BurialmainBiologicals { get; }

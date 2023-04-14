@@ -30,6 +30,7 @@ namespace winter_intex_2_5.Models
         public virtual DbSet<Biological> Biological { get; set; }
         public virtual DbSet<BiologicalC14> BiologicalC14 { get; set; }
         public virtual DbSet<Bodyanalysischart> Bodyanalysischart { get; set; }
+        public DbSet<Bodyanalysis2> Bodyanalysis2s { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Burialmain> Burialmain { get; set; }
         public virtual DbSet<BurialmainBiological> BurialmainBiological { get; set; }
@@ -70,6 +71,111 @@ namespace winter_intex_2_5.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Bodyanalysis2>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("bodyanalysis_2");
+
+                entity.Property(e => e.Area).HasColumnType("character varying");
+
+                entity.Property(e => e.BurialNumber).HasColumnType("character varying");
+
+                entity.Property(e => e.CariesPeriodontalDisease)
+                    .HasColumnName("Caries_Periodontal_Disease")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.ConcatId)
+                    .HasColumnName("concat_id")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.DateofExamination).HasColumnType("character varying");
+
+                entity.Property(e => e.DorsalPittingBoolean)
+                    .HasColumnName("DorsalPitting (boolean)")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.EastWest).HasColumnType("character varying");
+
+                entity.Property(e => e.EstimateStature).HasColumnType("character varying");
+
+                entity.Property(e => e.Femur).HasColumnType("character varying");
+
+                entity.Property(e => e.FemurHeadDiameter).HasColumnType("character varying");
+
+                entity.Property(e => e.FemurLength).HasColumnType("character varying");
+
+                entity.Property(e => e.Gonion).HasColumnType("character varying");
+
+                entity.Property(e => e.HairColor).HasColumnType("character varying");
+
+                entity.Property(e => e.Humerus).HasColumnType("character varying");
+
+                entity.Property(e => e.HumerusHeadDiameter).HasColumnType("character varying");
+
+                entity.Property(e => e.HumerusLength).HasColumnType("character varying");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.LamboidSuture).HasColumnType("character varying");
+
+                entity.Property(e => e.MedialIpRamus)
+                    .HasColumnName("Medial_IP_Ramus")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.NorthSouth).HasColumnType("character varying");
+
+                entity.Property(e => e.Notes).HasColumnType("character varying");
+
+                entity.Property(e => e.NuchalCrest).HasColumnType("character varying");
+
+                entity.Property(e => e.Observations).HasColumnType("character varying");
+
+                entity.Property(e => e.OrbitEdge).HasColumnType("character varying");
+
+                entity.Property(e => e.Osteophytosis).HasColumnType("character varying");
+
+                entity.Property(e => e.ParietalBossing).HasColumnType("character varying");
+
+                entity.Property(e => e.PreauricularSulcusBoolean)
+                    .HasColumnName("PreauricularSulcus (Boolean)")
+                    .HasColumnType("character varying");
+
+                entity.Property(e => e.PreservationIndex).HasColumnType("character varying");
+
+                entity.Property(e => e.PubicBone).HasColumnType("character varying");
+
+                entity.Property(e => e.Robust).HasColumnType("character varying");
+
+                entity.Property(e => e.SciaticNotch).HasColumnType("character varying");
+
+                entity.Property(e => e.SphenooccipitalSynchrondrosis).HasColumnType("character varying");
+
+                entity.Property(e => e.SquamosSuture).HasColumnType("character varying");
+
+                entity.Property(e => e.SquareEastWest).HasColumnType("character varying");
+
+                entity.Property(e => e.SquareNorthSouth).HasColumnType("character varying");
+
+                entity.Property(e => e.SubpubicAngle).HasColumnType("character varying");
+
+                entity.Property(e => e.SupraorbitalRidges).HasColumnType("character varying");
+
+                entity.Property(e => e.Tibia).HasColumnType("character varying");
+
+                entity.Property(e => e.ToothAttrition).HasColumnType("character varying");
+
+                entity.Property(e => e.ToothEruption).HasColumnType("character varying");
+
+                entity.Property(e => e.ToothEruptionAgeEstimate).HasColumnType("character varying");
+
+                entity.Property(e => e.VentralArc).HasColumnType("character varying");
+
+                entity.Property(e => e.ZygomaticCrest).HasColumnType("character varying");
+            });
 
             modelBuilder.Entity<SummaryTable>(entity =>
             {
@@ -767,45 +873,38 @@ namespace winter_intex_2_5.Models
 
                 entity.Property(e => e.Agebp).HasColumnName("agebp");
 
-                entity.Property(e => e.C14lab)
-                    .HasColumnName("c14lab")
-                    .HasMaxLength(200);
+                entity.Property(e => e.Area)
+                    .HasColumnName("area")
+                    .HasColumnType("character varying");
 
-                entity.Property(e => e.Calendardate).HasColumnName("calendardate");
+                entity.Property(e => e.Burialnumber).HasColumnName("burialnumber");
 
-                entity.Property(e => e.Calibrateddateavg).HasColumnName("calibrateddateavg");
+                entity.Property(e => e.Calendardate)
+                    .HasColumnName("calendardate")
+                    .HasColumnType("character varying");
 
-                entity.Property(e => e.Calibrateddatemax).HasColumnName("calibrateddatemax");
-
-                entity.Property(e => e.Calibrateddatemin).HasColumnName("calibrateddatemin");
-
-                entity.Property(e => e.Calibratedspan).HasColumnName("calibratedspan");
-
-                entity.Property(e => e.Category)
-                    .HasColumnName("category")
-                    .HasMaxLength(200);
+                entity.Property(e => e.ConcatId)
+                    .IsRequired()
+                    .HasColumnName("concat_id")
+                    .HasColumnType("character varying");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
-                    .HasMaxLength(2000);
-
-                entity.Property(e => e.Foci)
-                    .HasColumnName("foci")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Location)
-                    .HasColumnName("location")
-                    .HasMaxLength(2000);
+                entity.Property(e => e.Eastwest)
+                    .HasColumnName("eastwest")
+                    .HasColumnType("character varying");
 
-                entity.Property(e => e.Questions)
-                    .HasColumnName("questions")
-                    .HasMaxLength(2000);
+                entity.Property(e => e.Northsouth)
+                    .HasColumnName("northsouth")
+                    .HasColumnType("character varying");
 
-                entity.Property(e => e.Rack).HasColumnName("rack");
+                entity.Property(e => e.Sample).HasColumnName("sample");
 
-                entity.Property(e => e.Size).HasColumnName("size");
+                entity.Property(e => e.Squareeastwest).HasColumnName("squareeastwest");
 
-                entity.Property(e => e.Tubenumber).HasColumnName("tubenumber");
+                entity.Property(e => e.Squarenorthsouth).HasColumnName("squarenorthsouth");
             });
 
             modelBuilder.Entity<Color>(entity =>
