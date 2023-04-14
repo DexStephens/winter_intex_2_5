@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BYUEgypt</title>
+    <title>@ViewData["Title"]</title>
   
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel ="stylesheet" href="~/css/normalize.css"/>
@@ -35,15 +35,7 @@
                                     <li>
                                         <a asp-page="/SummaryTable" class="nav-link">Burial Summary</a>
                                     </li>
-                                    @if(User.IsInRole("administrator"))
-                                    {
-                                        <li>
-                                            <a class="nav-link" asp-controller="RoleManager" asp-action="Index">Role Management</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" asp-controller="UserRoles" asp-action="Index">User Roles</a>
-                                        </li>
-                                    }
+                                   
                                     <li>
                                         <div data-hover="false" data-delay="0" class="nav-dropdown w-dropdown">
                                             <div class="nav-dropdown-toggle w-dropdown-toggle">
@@ -74,7 +66,7 @@
                 @RenderBody()
             </main>
         </div>
-        <section class="footer-dark wf-section">
+        <section class="footer footer-dark wf-section">
             <div class="container-2">
                 <div class="footer-wrapper">
                     <a href="#" class="footer-brand w-inline-block"><img src="~/img/giza.png" loading="lazy" alt=""></a>

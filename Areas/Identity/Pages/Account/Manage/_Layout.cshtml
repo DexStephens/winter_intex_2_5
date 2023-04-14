@@ -1,4 +1,7 @@
-﻿@{
+﻿
+<div class="container">
+    <main role="main" class="pb-3">
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -9,7 +12,7 @@
     }
 }
 
-<h2>Manage your account</h2>
+<h1 class="header-top-space">Manage your account</h1>
 
 <div>
     <h4>Change your account settings</h4>
@@ -27,3 +30,10 @@
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
+        <div class="empty-box">
+            <br /><br /><br /><br />
+            <p></p>
+            <br /><br /><br /><br />
+        </div>
+    </main>
+</div>

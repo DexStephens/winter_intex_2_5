@@ -322,6 +322,9 @@ img {
     line-height: 1.6;
     text-align: center;
 }
+.header-top-space {
+    margin-top:20px;
+}
 
 .header-heading {
     position: relative;
@@ -436,6 +439,22 @@ img {
     line-height: 1.2px;
 }
 
+.empty-box {
+    padding: 114px;
+}
+
+.empty-box2 {
+    padding: 165px;
+}
+
+.empty-box3 {
+    padding: 100px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
 .footer-dark {
     position: relative;
     padding: 50px 30px 15px;
@@ -479,6 +498,10 @@ img {
     align-items: flex-start;
 }
 
+.form-group {
+    margin-top:2rem;
+    margin-bottom:2rem;
+}
 .title-small {
     margin-bottom: 12px;
     font-size: 14px;
