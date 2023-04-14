@@ -231,7 +231,8 @@ img {
     }
 
 .button-primary {
-    padding: 12px 25px;
+    padding: 12px 18px;
+    margin: 2px;
     border-radius: 20px;
     background-color: #7193f3;
     transition: all 200ms ease;
@@ -250,6 +251,13 @@ img {
 
     .button-primary:active {
         background-color: #43464d;
+    }
+
+.button-warning {
+    background-color: #CC5A71;
+}
+    .button-warning:hover {
+        background-color: #A94373;
     }
 
 .main-wrapper {
