@@ -83,8 +83,15 @@ namespace winter_intex_2_5
                 });
             }
 
+            // allow cookies/site-switching for Google Sign in
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.CheckConsentNeeded = context => true;
+                options.Secure = CookieSecurePolicy.Always;
+            });
 
-                services.Configure<IdentityOptions>(options =>
+            services.Configure<IdentityOptions>(options =>
                 {
                     options.Password.RequireDigit = true;
                     options.Password.RequireNonAlphanumeric = true;
@@ -175,7 +182,7 @@ namespace winter_intex_2_5
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy(); // GDPR cookie policy
+            app.UseCookiePolicy(); 
 
             // XSS Protection Header
             app.Use(async (context, next) =>
