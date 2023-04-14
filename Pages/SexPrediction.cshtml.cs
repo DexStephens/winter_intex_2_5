@@ -29,6 +29,7 @@ namespace winter_intex_2_5.Pages
         {
             SexData = new PredictionService().PopulateSexData(sexData);
             //do the prediction stuff here
+            SexData = new SexMinMax().StandardizeSex(sexData);
             var result = _sexSession.Run(new List<NamedOnnxValue>
             {
                 NamedOnnxValue.CreateFromTensor("float_input", sexData.AsTensor())

@@ -28,6 +28,7 @@ namespace winter_intex_2_5.Pages
         {
             WrappingData = new PredictionService().PopulateWrappingData(wrappingData);
             //do predictions here
+            WrappingData = new WrappingMinMax().StandardizeWrapping(wrappingData);
             var result = _wrappingSession.Run(new List<NamedOnnxValue>
             {
                 NamedOnnxValue.CreateFromTensor("float_input", wrappingData.AsTensor())
