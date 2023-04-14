@@ -22,10 +22,6 @@
     #filterForm {
         transition: opacity 0.5s ease-in-out;
     }
-
-    tr:hover {
-        background-color: lightgrey;
-    }
 </style>
 
 <div class="container">
@@ -162,6 +158,13 @@
                                             <label class="form-check-label" asp-for="SummaryTableFilter.Male">Male</label>
                                         </div>
                                     }
+                                    else if (Model.SummaryTableFilter.NotFilter && Model.SummaryTableFilter.Male)
+                                    {
+                                        <div class="form-check">
+                                            <input class="form-check-input form-group" type="checkbox" asp-for="SummaryTableFilter.Male" />
+                                            <label class="form-check-label" asp-for="SummaryTableFilter.Male">Male</label>
+                                        </div>
+                                    }
                                     @if (Model.AllSummaryTables.Any(x => x.Sex == "F"))
                                     {
                                         <div class="form-check">
@@ -171,11 +174,12 @@
                                     }
                                 </div>
                             }
-                            <div>
-                                <button class="button-primary w-button" type="submit">Filter Burial Records</button>
+                            <div class="form-check">
+                                <input class="form-check-input form-group" type="checkbox" asp-for="SummaryTableFilter.NotFilter" />
+                                <label class="form-check-label" asp-for="SummaryTableFilter.NotFilter">Not</label>
                             </div>
                             <div>
-                                
+                                <button class="button-primary w-button" type="submit">Filter Burial Records</button>
                             </div>
                         </div>
                     </div>
@@ -211,6 +215,7 @@
                             <input type="hidden" asp-for="@Model.SummaryTableFilter.MaxDepth" />
                             <input type="hidden" asp-for="@Model.SummaryTableFilter.MinStature" />
                             <input type="hidden" asp-for="@Model.SummaryTableFilter.MaxStature" />
+                            <input type="hidden" asp-for="@Model.SummaryTableFilter.NotFilter" />
                             <input type="hidden" name="currentPage" value="@i" />
                             <button type="submit" class="btn btn-primary">@i</button>
                         </form>
@@ -227,16 +232,17 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr class="table-primary">
-                    <th>Textile color</th>
-                    <th>Textile structure</th>
+                    <th>Burial ID*</th>
+                    <th>Hair Color</th>
+                    <th>Age at Death</th>
                     <th>Sex</th>
                     <th>Burial Depth</th>
-                    <th>Estimate Stature</th>
-                    <th>Age at Death</th>
                     <th>Head Direction</th>
-                    <th>Burial ID*</th>
+                    <th>Data Expert</th>
+                    <th>Excavation Year</th>
                     <th>Textile Function</th>
-                    <th>Hair Color</th>
+                    <th>Textile color</th>
+                    <th>Textile structure</th>
                     <th>View Summary</th>
                 </tr>
             </thead>
@@ -246,16 +252,17 @@
                     @foreach (var rowItem in Model.CurrentSummaryTables)
                     {
                         <tr>
-                            <td>@rowItem.Textilecolor</td>
-                            <td>@rowItem.Structure</td>
+                            <td>@rowItem.Burialid</td>
+                            <td>@rowItem.Haircolor</td>
+                            <td>@rowItem.Ageatdeath</td>
                             <td>@rowItem.Sex</td>
                             <td>@rowItem.Depth</td>
-                            <td>@rowItem.Estimatestature</td>
-                            <td>@rowItem.Ageatdeath</td>
                             <td>@rowItem.Headdirection</td>
-                            <td>@rowItem.Burialid</td>
+                            <td>@rowItem.Dataexpertinitials</td>
+                            <td>@rowItem.Fieldbookexcavationyear</td>
                             <td>@rowItem.Textilefunction</td>
-                            <td>@rowItem.Haircolor</td>
+                            <td>@rowItem.Textilecolor</td>
+                            <td>@rowItem.Structure</td>
                             <td>
                                 <form method="post" asp-page="/RecordSummary">
                                     <input type="hidden" name="burialId" value="@rowItem.Id" />

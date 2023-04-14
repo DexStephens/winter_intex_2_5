@@ -41,9 +41,18 @@ namespace winter_intex_2_5.Pages
             if(ModelState.IsValid)
             {
                 SummaryTableFilter = summaryTableFilter;
-                AllSummaryTables = new SummaryTableService(MummyRepository).FilterSummaryRowItemsByCriteria(summaryTableFilter);
-                CurrentSummaryTables = AllSummaryTables.Skip((CurrentPage - 1) * 50).Take(50);
-                SummaryTableDefaults = new SummaryTableDefaults(AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Haircolor)).Select(x => x.Haircolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Structure)).Select(x => x.Structure).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Ageatdeath)).Select(x => x.Ageatdeath).OrderBy(x => x).Distinct(), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Headdirection) && x.Headdirection != "N LL").Select(x => x.Headdirection).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilefunction)).Select(x => x.Textilefunction).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilecolor)).Select(x => x.Textilecolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Burialid)).Select(x => x.Burialid).Distinct());
+                if(summaryTableFilter.NotFilter)
+                {
+                    AllSummaryTables = new SummaryTableService(MummyRepository).FilterSummaryRowItemsByNotCriteria(summaryTableFilter);
+                    CurrentSummaryTables = AllSummaryTables.Skip((CurrentPage - 1) * 50).Take(50);
+                    SummaryTableDefaults = new SummaryTableDefaults(AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Haircolor)).Select(x => x.Haircolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Structure)).Select(x => x.Structure).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Ageatdeath)).Select(x => x.Ageatdeath).OrderBy(x => x).Distinct(), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Headdirection) && x.Headdirection != "N LL").Select(x => x.Headdirection).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilefunction)).Select(x => x.Textilefunction).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilecolor)).Select(x => x.Textilecolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Burialid)).Select(x => x.Burialid).Distinct());
+                }
+                else
+                {
+                    AllSummaryTables = new SummaryTableService(MummyRepository).FilterSummaryRowItemsByCriteria(summaryTableFilter);
+                    CurrentSummaryTables = AllSummaryTables.Skip((CurrentPage - 1) * 50).Take(50);
+                    SummaryTableDefaults = new SummaryTableDefaults(AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Haircolor)).Select(x => x.Haircolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Structure)).Select(x => x.Structure).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Ageatdeath)).Select(x => x.Ageatdeath).OrderBy(x => x).Distinct(), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Headdirection) && x.Headdirection != "N LL").Select(x => x.Headdirection).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilefunction)).Select(x => x.Textilefunction).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Textilecolor)).Select(x => x.Textilecolor).Distinct().OrderBy(x => x), AllSummaryTables.Where(x => !string.IsNullOrWhiteSpace(x.Burialid)).Select(x => x.Burialid).Distinct());
+                }
                 TotalPageCount = AllSummaryTables.Count() / 50;
                 RePost = true;
             }
